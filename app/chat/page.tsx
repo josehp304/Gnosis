@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, Bot, User } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { fetchGroqResponse } from "@/app/action/askAi"
 
 // Types for messages
 type MessageType = "user" | "bot"
@@ -19,12 +20,12 @@ interface Message {
 }
 
 // Mock response function (to be replaced with actual Groq API integration)
-const getSpiritualGuidance = async (message: string): Promise<string> => {
-  // Simulate API call with delay
-  await new Promise(resolve => setTimeout(resolve, 1000))
+// const getSpiritualGuidance = async (message: string): Promise<string> => {
+//   // Simulate API call with delay
+//   await new Promise(resolve => setTimeout(resolve, 1000))
   
-  return `Thank you for seeking spiritual guidance. Based on biblical principles, I'd encourage you to reflect on scripture that teaches us about this topic. Remember that prayer and community can also be valuable resources in your spiritual journey.`
-}
+//   return `Thank you for seeking spiritual guidance. Based on biblical principles, I'd encourage you to reflect on scripture that teaches us about this topic. Remember that prayer and community can also be valuable resources in your spiritual journey.`
+// }
 
 export default function ChatPage() {
   const [input, setInput] = useState("")
@@ -63,7 +64,7 @@ export default function ChatPage() {
     setIsLoading(true)
 
     try {
-      const response = await getSpiritualGuidance(input)
+      const response = await fetchGroqResponse(input)
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),

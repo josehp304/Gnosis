@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Music, Play, Pause, SkipForward, SkipBack, Plus, Search, Heart, Volume2 } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
-
+import Image from "next/image"
 // Mock data for songs
 const devotionalSongs = [
   { id: 1, title: "Amazing Grace", artist: "Chris Tomlin", duration: "4:32", image: "https://images.pexels.com/photos/3944091/pexels-photo-3944091.jpeg?auto=compress&cs=tinysrgb&w=600" },
@@ -82,7 +82,7 @@ export default function MusicPage() {
               {filteredSongs.map((song) => (
                 <Card key={song.id} className="overflow-hidden hover:shadow-md transition-shadow">
                   <div className="aspect-square relative group">
-                    <img
+                    <Image
                       src={song.image}
                       alt={song.title}
                       className="w-full h-full object-cover"
@@ -113,7 +113,7 @@ export default function MusicPage() {
               {devotionalPlaylists.map((playlist) => (
                 <Card key={playlist.id} className="overflow-hidden hover:shadow-md transition-shadow">
                   <div className="aspect-square relative group">
-                    <img
+                    <Image
                       src={playlist.image}
                       alt={playlist.title}
                       className="w-full h-full object-cover"
@@ -169,7 +169,7 @@ export default function MusicPage() {
           <div className="container mx-auto flex items-center gap-4">
             <div className="flex items-center flex-1 min-w-0">
               <div className="h-12 w-12 rounded overflow-hidden flex-shrink-0 mr-3">
-                <img
+                <Image
                   src={currentSong.image}
                   alt={currentSong.title}
                   className="h-full w-full object-cover"
