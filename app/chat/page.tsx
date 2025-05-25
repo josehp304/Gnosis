@@ -7,9 +7,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, Bot, User } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { FetchGroqResponse } from "@/app/action/askAi"
-import parse from "html-react-parser"
 
+import parse from "html-react-parser"
+import axios from "axios"
 // Types for messages
 type MessageType = "user" | "assistant" |"system"
 interface Message {
@@ -59,8 +59,8 @@ export default function ChatPage() {
     setIsLoading(true)
     const reqMessage=messages.map(message => ({role:message.type === "user" ? "user" : "assistant", content:message.content}))
     try {
-      const response = await FetchGroqResponse({messages:[...reqMessage,{role:userMessage.type,content:userMessage.content}]})
-      
+      const responseax = await axios.post("/api/chatbot",{messages:[...reqMessage,{role:userMessage.type,content:userMessage.content}]})
+      const response = responseax.data
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: response?.message?.content,
