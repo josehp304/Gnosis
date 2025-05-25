@@ -53,7 +53,7 @@ const Navigation = () => {
             <SheetContent side="left" className="w-[240px] sm:w-[300px]">
               <nav className="flex flex-col gap-4 mt-8">
                 <Link href="/" className="flex items-center gap-2 font-semibold text-xl" onClick={() => setIsOpen(false)}>
-                  <span className="font-playfair">Divine Guide</span>
+                  <span className="font-playfair">Gnosis</span>
                 </Link>
                 {routes.map((route) => (
                   <Link
@@ -87,7 +87,7 @@ const Navigation = () => {
           </Sheet>
           <Link href="/" className="flex items-center gap-2">
             <span className="font-playfair hidden md:inline-block text-xl font-semibold">
-              Divine Guide
+              Gnosis
             </span>
             <span className="font-playfair md:hidden text-xl font-semibold">
               DG

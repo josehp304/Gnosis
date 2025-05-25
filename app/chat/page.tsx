@@ -2,16 +2,16 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, Bot, User } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { fetchGroqResponse } from "@/app/action/askAi"
+import { FetchGroqResponse } from "@/app/action/askAi"
+import parse from "html-react-parser"
 
 // Types for messages
-type MessageType = "user" | "bot"
+type MessageType = "user" | "assistant" |"system"
 interface Message {
   id: string
   content: string
@@ -19,24 +19,19 @@ interface Message {
   timestamp: Date
 }
 
-// Mock response function (to be replaced with actual Groq API integration)
-// const getSpiritualGuidance = async (message: string): Promise<string> => {
-//   // Simulate API call with delay
-//   await new Promise(resolve => setTimeout(resolve, 1000))
-  
-//   return `Thank you for seeking spiritual guidance. Based on biblical principles, I'd encourage you to reflect on scripture that teaches us about this topic. Remember that prayer and community can also be valuable resources in your spiritual journey.`
-// }
+
 
 export default function ChatPage() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      content: "Welcome to Divine Guide! I'm here to provide spiritual guidance based on biblical principles. How can I assist you today?",
-      type: "bot",
+      content: "Welcome to Gnosis Guide! I'm here to provide spiritual guidance based on biblical principles. How can I assist you today?",
+      type: "assistant",
       timestamp: new Date()
     }
   ])
+  
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -62,14 +57,14 @@ export default function ChatPage() {
     setMessages(prev => [...prev, userMessage])
     setInput("")
     setIsLoading(true)
-
+    const reqMessage=messages.map(message => ({role:message.type === "user" ? "user" : "assistant", content:message.content}))
     try {
-      const response = await fetchGroqResponse(input)
+      const response = await FetchGroqResponse({messages:[...reqMessage,{role:userMessage.type,content:userMessage.content}]})
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: response,
-        type: "bot",
+        content: response?.message?.content,
+        type: "assistant",
         timestamp: new Date()
       }
 
@@ -80,7 +75,7 @@ export default function ChatPage() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: "I apologize, but I'm having trouble connecting right now. Please try again later.",
-        type: "bot",
+        type: "assistant",
         timestamp: new Date()
       }
 
@@ -90,10 +85,11 @@ export default function ChatPage() {
       inputRef.current?.focus()
     }
   }
+ 
 
   return (
-    <div className="container mx-auto max-w-4xl py-6 px-4">
-      <Card className="border shadow-sm">
+    <div className="container mx-auto max-w-7xl py-6 px-4 ">
+      <Card className="border shadow-sm h-[90vh] bg-red-500 flex flex-col justify-between ">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
@@ -103,8 +99,8 @@ export default function ChatPage() {
             Ask for biblical wisdom and spiritual guidance
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <ScrollArea className="h-[500px] pr-4">
+        <CardContent className="">
+          <ScrollArea className=" pr-4 h-[50vh]">
             <div className="flex flex-col gap-4">
               {messages.map((message) => (
                 <div
@@ -125,7 +121,7 @@ export default function ChatPage() {
                         : "bg-muted"
                     }`}
                   >
-                    <p className="text-sm">{message.content}</p>
+                    <p className="text-sm">{parse(message.content)}</p>
                     <p className="text-xs mt-1 opacity-70">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
