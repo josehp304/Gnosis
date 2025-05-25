@@ -89,7 +89,7 @@ export default function ChatPage() {
 
   return (
     <div className="container mx-auto max-w-7xl py-6 px-4 ">
-      <Card className="border shadow-sm h-[90vh] bg-red-500 flex flex-col justify-between ">
+      <Card className="border shadow-sm h-[90vh]  flex flex-col justify-between ">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />

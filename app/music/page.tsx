@@ -85,6 +85,8 @@ export default function MusicPage() {
                     <Image
                       src={song.image}
                       alt={song.title}
+                      width={600}
+                      height={600}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -116,6 +118,8 @@ export default function MusicPage() {
                     <Image
                       src={playlist.image}
                       alt={playlist.title}
+                      width={600}
+                      height={600}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -172,6 +176,8 @@ export default function MusicPage() {
                 <Image
                   src={currentSong.image}
                   alt={currentSong.title}
+                  width={600}
+                  height={600}
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -198,6 +204,8 @@ export default function MusicPage() {
           </div>
         </div>
       )}
+      
+
     </div>
   )
 }

@@ -85,8 +85,8 @@ const Navigation = () => {
               </nav>
             </SheetContent>
           </Sheet>
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-playfair hidden md:inline-block text-xl font-semibold">
+          <Link href="/" className="flex items-center gap-2 ml-5">
+            <span className="font-playfair hidden md:inline-block text-xl font-semibold ">
               Gnosis
             </span>
             <span className="font-playfair md:hidden text-xl font-semibold">
