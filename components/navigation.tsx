@@ -37,6 +37,12 @@ const Navigation = () => {
       icon: Book,
       active: pathname === "/bible",
     },
+    {
+      href: "/saints",
+      label: "Saints",
+      icon: UserCircle,
+      active: pathname === "/saints",
+    },
   ]
 
   return (
@@ -53,7 +59,7 @@ const Navigation = () => {
             <SheetContent side="left" className="w-[240px] sm:w-[300px]">
               <nav className="flex flex-col gap-4 mt-8">
                 <Link href="/" className="flex items-center gap-2 font-semibold text-xl" onClick={() => setIsOpen(false)}>
-                  <span className="font-playfair">Gnosis</span>
+                  <span className="font-crimson">Gnosis</span>
                 </Link>
                 {routes.map((route) => (
                   <Link
@@ -86,10 +92,10 @@ const Navigation = () => {
             </SheetContent>
           </Sheet>
           <Link href="/" className="flex items-center gap-2 ml-5">
-            <span className="font-playfair hidden md:inline-block text-xl font-semibold ">
+            <span className="font-crimson hidden md:inline-block text-xl font-semibold ">
               Gnosis
             </span>
-            <span className="font-playfair md:hidden text-xl font-semibold">
+            <span className="font-crimson md:hidden text-xl font-semibold">
               DG
             </span>
           </Link>
