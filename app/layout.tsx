@@ -1,13 +1,17 @@
 import './globals.css';
 import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
-// import { Playfair_Display } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import { Crimson_Text } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import Navigation from '@/components/navigation';
 
-// const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-// const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const crimsonText = Crimson_Text({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-crimson'
+});
 
 export const metadata: Metadata = {
   title: 'Divine Guide | Bible App with AI Guidance',
@@ -21,7 +25,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`  font-sans`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className={`${inter.variable} ${crimsonText.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
