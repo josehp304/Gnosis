@@ -7,28 +7,107 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-40 overflow-hidden bg-gradient-to-br from-background via-sacred-light/30 to-background sacred-pattern">
-        <div className="absolute inset-0 sacred-arch-pattern opacity-[0.08]"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/40"></div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-crimson-bold tracking-tight text-foreground mb-8 leading-tight">
-              <span className="text-primary">Gnosis</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed font-light">
-              Your spiritual companion for Bible study, devotional music, and community connection
+      <section
+        className="relative py-32 md:py-48 overflow-hidden bg-gradient-to-br from-indigo-100 via-background to-teal-100 sacred-pattern"
+        aria-label="Welcome to Gnosis - Your Spiritual Companion"
+      >
+        {/* Mandala-inspired decorative elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 opacity-[0.03]" aria-hidden="true">
+          <svg viewBox="0 0 100 100" className="w-full h-full text-primary">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <path d="M50,5 L55,20 L50,35 L45,20 Z" fill="currentColor" opacity="0.3"/>
+            <path d="M50,65 L55,80 L50,95 L45,80 Z" fill="currentColor" opacity="0.3"/>
+            <path d="M5,50 L20,55 L35,50 L20,45 Z" fill="currentColor" opacity="0.3"/>
+            <path d="M65,50 L80,55 L95,50 L80,45 Z" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div>
+
+        <div className="absolute bottom-20 right-10 w-24 h-24 opacity-[0.04]" aria-hidden="true">
+          <svg viewBox="0 0 100 100" className="w-full h-full text-accent">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.8"/>
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.6"/>
+            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="0.4"/>
+            <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="0.2"/>
+          </svg>
+        </div>
+
+        {/* Enhanced stained-glass arch pattern */}
+        <div className="absolute inset-0 sacred-arch-pattern opacity-[0.06]" aria-hidden="true"></div>
+
+        {/* Subtle religious iconography overlay */}
+        <div className="absolute inset-0 opacity-[0.02]" aria-hidden="true">
+          <div className="absolute top-1/4 left-1/4 w-16 h-16">
+            <svg viewBox="0 0 24 24" className="w-full h-full text-primary">
+              <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div className="absolute top-3/4 right-1/4 w-12 h-12">
+            <svg viewBox="0 0 24 24" className="w-full h-full text-sacred-teal">
+              <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 6.5V4.5C15 3.57 14.43 3 13.5 3H10.5C9.57 3 9 3.57 9 4.5V6.5L3 7V9L9 8.5V21H11V14H13V21H15V8.5L21 9Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Serene gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-background/30" aria-hidden="true"></div>
+
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 relative">
+          <div className="text-center max-w-5xl mx-auto space-y-8">
+            {/* Main heading with enhanced typography */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-crimson-bold tracking-tight text-foreground leading-[0.9] mb-6">
+                <span className="text-primary drop-shadow-sm">Gnosis</span>
+              </h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-accent via-primary to-sacred-teal mx-auto rounded-full opacity-60" aria-hidden="true"></div>
+            </div>
+
+            {/* Enhanced subtitle with better typography */}
+            <p className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-light max-w-4xl mx-auto">
+              Your sacred companion for
+              <span className="text-primary font-medium"> Bible study</span>,
+              <span className="text-sacred-teal font-medium"> devotional music</span>, and
+              <span className="text-accent font-medium"> spiritual community</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button asChild size="lg" className="sacred-button text-lg px-10 py-4 h-auto">
-                <Link href="/chat">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+
+            {/* Call-to-action buttons with enhanced styling */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <Button
+                asChild
+                size="lg"
+                className="sacred-button text-lg px-12 py-5 h-auto rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                aria-label="Start your spiritual journey with Gnosis"
+              >
+                <Link href="/chat" className="flex items-center">
+                  Begin Your Journey <ArrowRight className="ml-3 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-10 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5">
-                <Link href="/community">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="text-lg px-12 py-5 h-auto rounded-xl border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+                aria-label="Join our faith community"
+              >
+                <Link href="/community" className="flex items-center">
+                  <Users className="mr-3 h-5 w-5" />
                   Join Community
                 </Link>
               </Button>
+            </div>
+
+            {/* Inspirational verse with elegant styling */}
+            <div className="pt-12">
+              <blockquote className="text-sm md:text-base text-muted-foreground/80 italic font-light max-w-2xl mx-auto leading-relaxed">
+                <span className="text-accent">"</span>
+                Trust in the Lord with all your heart and lean not on your own understanding
+                <span className="text-accent">"</span>
+                <footer className="mt-2 text-xs text-muted-foreground/60 font-medium tracking-wide">
+                  — Proverbs 3:5
+                </footer>
+              </blockquote>
             </div>
           </div>
         </div>
