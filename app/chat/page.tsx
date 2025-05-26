@@ -26,7 +26,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      content: "Welcome to The Bible Guide! I'm here to provide biblical wisdom and spiritual guidance. How can I help you today?",
+      content: "Praise God! How can I help you today?",
       type: "assistant",
       timestamp: new Date()
     }
@@ -133,19 +133,7 @@ export default function ChatPage() {
                       animationFillMode: 'forwards'
                     }}
                   >
-                    <Avatar className={`ring-2 ring-offset-2 transition-all duration-300 hover:scale-110 ${
-                      message.type === "user"
-                        ? "ring-purple-400 ring-offset-purple-50"
-                        : "ring-blue-400 ring-offset-blue-50"
-                    }`}>
-                      <AvatarFallback className={`${
-                        message.type === "user"
-                          ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white"
-                          : "bg-gradient-to-br from-blue-500 to-indigo-500 text-white"
-                      } transition-all duration-300`}>
-                        {message.type === "user" ? <User className="h-5 w-5" /> : <Bot className="h-5 w-5" />}
-                      </AvatarFallback>
-                    </Avatar>
+                  
                     <div
                       className={`relative max-w-[85%] sm:max-w-[75%] group ${
                         message.type === "user" ? "ml-auto" : "mr-auto"
@@ -173,11 +161,7 @@ export default function ChatPage() {
                 ))}
                 {isLoading && (
                   <div className="flex items-start gap-4 opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards' }}>
-                    <Avatar className="ring-2 ring-offset-2 ring-blue-400 ring-offset-blue-50">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-500 text-white">
-                        <Bot className="h-5 w-5" />
-                      </AvatarFallback>
-                    </Avatar>
+                    
                     <div className="relative max-w-[85%] sm:max-w-[75%] mr-auto">
                       <div className="rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl bg-white/98 dark:bg-gray-800/95 border border-gray-200/60 dark:border-gray-700/60 backdrop-blur-sm shadow-gray-500/20">
                         <div className="flex gap-2 items-center">
