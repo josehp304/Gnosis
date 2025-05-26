@@ -2,10 +2,10 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Send, Bot, User, Sparkles, MessageCircle } from "lucide-react"
+import { Send, Bot, User, MessageCircle } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import parse from "html-react-parser"
@@ -26,7 +26,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      content: "Let us have some spiritual talk. What would you like to talk about?",
+      content: "Welcome to The Bible Guide! I'm here to provide biblical wisdom and spiritual guidance. How can I help you today?",
       type: "assistant",
       timestamp: new Date()
     }
@@ -93,28 +93,34 @@ export default function ChatPage() {
         <Card className="border-0 shadow-2xl h-[90vh] md:h-[85vh] flex flex-col justify-between bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl overflow-hidden">
           <CardHeader className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-purple-600/90 to-indigo-600/90"></div>
-            <div className="relative z-10">
-              <CardTitle className="flex flex-col sm:flex-row items-start sm:items-center gap-3 text-xl md:text-2xl font-bold">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-white/20 rounded-full backdrop-blur-sm">
-                    <Sparkles className="h-5 w-5 md:h-6 md:w-6" />
-                  </div>
-                  Divine Guide
+            <div className="relative z-10 ">
+              <CardTitle className="flex items-center justify-between text-xl md:text-2xl font-bold">
+                <div className="flex items-center">
+                  The Bible Guide
                 </div>
                 <div className="flex items-center gap-1 text-xs md:text-sm font-normal bg-white/20 px-2 md:px-3 py-1 rounded-full">
                   <MessageCircle className="h-3 w-3 md:h-4 md:w-4" />
                   AI Spiritual Guidance
                 </div>
               </CardTitle>
-              <CardDescription className="text-blue-100 mt-2 text-sm md:text-base">
-                Receive biblically-grounded wisdom and spiritual guidance through our AI companion
-              </CardDescription>
+
             </div>
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
             <div className="absolute -bottom-2 -left-2 w-16 h-16 bg-purple-300/20 rounded-full blur-lg"></div>
           </CardHeader>
-          <CardContent className="flex-1 p-6 bg-gradient-to-b from-gray-50/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50">
-            <ScrollArea className="h-[55vh] pr-4">
+          <CardContent className="flex-1 p-6 relative overflow-hidden">
+            {/* Background Image with Spiritual Overlay */} 
+            <div
+              className="absolute inset-0 chat-background"
+              style={{
+                backgroundImage: "url('/seek jesus.jpg')"
+              }}
+            />
+            {/* Multi-layered overlay for spiritual atmosphere and readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/90 via-white/85 to-purple-50/90 dark:from-blue-900/90 dark:via-gray-900/85 dark:to-purple-900/90 spiritual-overlay" />
+            <div className="absolute inset-0 bg-gradient-radial from-transparent via-white/20 to-white/40 dark:from-transparent dark:via-gray-900/20 dark:to-gray-900/40" />
+
+            <ScrollArea className="h-[55vh] pr-4 relative z-10">
               <div className="flex flex-col gap-6 py-4">
                 {messages.map((message, index) => (
                   <div
@@ -146,28 +152,21 @@ export default function ChatPage() {
                       }`}
                     >
                       <div
-                        className={`rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg transition-all duration-300 hover:shadow-xl ${
+                        className={`rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl transition-all duration-300 hover:shadow-2xl backdrop-blur-sm ${
                           message.type === "user"
-                            ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white"
-                            : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200"
+                            ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-purple-500/25"
+                            : "bg-white/98 dark:bg-gray-800/95 border border-gray-200/60 dark:border-gray-700/60 text-gray-800 dark:text-gray-200 shadow-gray-500/20"
                         }`}
                       >
                         <div className="prose prose-sm max-w-none">
                           {parse(message.content)}
                         </div>
-                        <p className={`text-xs mt-3 ${
-                          message.type === "user"
-                            ? "text-purple-100"
-                            : "text-gray-500 dark:text-gray-400"
-                        }`}>
-                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </p>
                       </div>
                       {/* Message tail */}
                       <div className={`absolute top-4 w-3 h-3 transform rotate-45 ${
                         message.type === "user"
                           ? "-left-1 bg-gradient-to-br from-purple-500 to-pink-500"
-                          : "-right-1 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700"
+                          : "-right-1 bg-white/98 dark:bg-gray-800/95 border-r border-b border-gray-200/60 dark:border-gray-700/60"
                       }`}></div>
                     </div>
                   </div>
@@ -180,7 +179,7 @@ export default function ChatPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div className="relative max-w-[85%] sm:max-w-[75%] mr-auto">
-                      <div className="rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                      <div className="rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl bg-white/98 dark:bg-gray-800/95 border border-gray-200/60 dark:border-gray-700/60 backdrop-blur-sm shadow-gray-500/20">
                         <div className="flex gap-2 items-center">
                           <div className="flex gap-1">
                             <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 animate-bounce"></div>
@@ -190,7 +189,7 @@ export default function ChatPage() {
                           <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">Thinking...</span>
                         </div>
                       </div>
-                      <div className="absolute top-4 -right-1 w-3 h-3 transform rotate-45 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700"></div>
+                      <div className="absolute top-4 -right-1 w-3 h-3 transform rotate-45 bg-white/98 dark:bg-gray-800/95 border-r border-b border-gray-200/60 dark:border-gray-700/60"></div>
                     </div>
                   </div>
                 )}
@@ -203,7 +202,7 @@ export default function ChatPage() {
               <div className="flex-1 relative">
                 <Textarea
                   ref={inputRef}
-                  placeholder="Share what's on your heart... Ask for spiritual guidance, biblical wisdom, or prayer support."
+                  placeholder="Share your thoughts..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   className="min-h-[50px] md:min-h-[60px] max-h-32 resize-none border-2 border-gray-200 dark:border-gray-600 rounded-2xl px-4 md:px-6 py-3 md:py-4 text-sm md:text-base bg-white dark:bg-gray-800 focus:border-purple-400 dark:focus:border-purple-400 focus:ring-2 focus:ring-purple-100 dark:focus:ring-purple-900/50 transition-all duration-300 shadow-sm hover:shadow-md"

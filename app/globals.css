@@ -104,3 +104,52 @@
 .animate-fade-in {
   animation: fade-in 0.5s ease-out;
 }
+
+/* Chat background image optimizations */
+.chat-background {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .chat-background {
+    background-attachment: scroll;
+    background-size: cover;
+  }
+}
+
+/* Subtle animation for spiritual atmosphere */
+@keyframes spiritual-glow {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.spiritual-overlay {
+  animation: spiritual-glow 8s ease-in-out infinite;
+}
+
+/* Enhanced message bubble styling for better contrast */
+.message-bubble-user {
+  background: linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 100%);
+  box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.25), 0 8px 10px -6px rgba(168, 85, 247, 0.1);
+}
+
+.message-bubble-assistant {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+.dark .message-bubble-assistant {
+  background: rgba(31, 41, 55, 0.95);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
