@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,20 +8,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Book, BookOpen, Bookmark, Search, Heart } from "lucide-react"
-
+import axios from "axios"
 // Mock Bible books for demonstration
-const bibleBooks = [
-  { id: "genesis", name: "Genesis", chapters: 50 },
-  { id: "exodus", name: "Exodus", chapters: 40 },
-  { id: "leviticus", name: "Leviticus", chapters: 27 },
-  { id: "numbers", name: "Numbers", chapters: 36 },
-  { id: "deuteronomy", name: "Deuteronomy", chapters: 34 },
-  { id: "matthew", name: "Matthew", chapters: 28 },
-  { id: "mark", name: "Mark", chapters: 16 },
-  { id: "luke", name: "Luke", chapters: 24 },
-  { id: "john", name: "John", chapters: 21 },
-  { id: "acts", name: "Acts", chapters: 28 },
-]
+
 
 // Mock passage for demonstration
 const passage = {
@@ -43,16 +32,77 @@ const bookmarks = [
   { id: 3, reference: "Romans 8:28", description: "All things work together for good" },
 ]
 
+const BIBLE_CODE = {
+  en:"bba9f40183526463-01"
+}
+
+let lang = "en" 
+
+let Chapter ={
+  bible_code:'',
+  book_id:'',
+  chatper_id:'',
+
+}
+
 export default function BiblePage() {
   const [selectedBook, setSelectedBook] = useState("john")
   const [selectedChapter, setSelectedChapter] = useState("3")
   const [searchQuery, setSearchQuery] = useState("")
+
+
+  type BibleBookState = {
+    id: string;
+    name: string;
+    chapters: number;
+  };
+  let [bibleBooks,setBibleBooks] = useState<BibleBookState[]>([])
 
   // Generate an array of chapters for the selected book
   const getChaptersForBook = (bookId: string) => {
     const book = bibleBooks.find(b => b.id === bookId)
     if (!book) return []
     return Array.from({ length: book.chapters }, (_, i) => i + 1)
+  }
+  type Book = {
+    id: string;
+    bibleId: string;
+    abbreviation: string;
+    name: string;
+    nameLong: string;
+    // chapters: Chapter[];
+  };
+  
+  type Chapter = {
+    id: string;
+    bibleId: string;
+    bookId: string;
+    number: string;
+    position: number;
+    sections: Section[];
+  };
+  
+  type Section = {
+    id: string;
+    bibleId: string;
+    title: string;
+    firstVerseId: string;
+    lastVerseId: string;
+    firstVerseOrgId: string;
+    lastVerseOrgId: string;
+  };
+  useEffect(()=>{
+    getBooksList()
+  },[])
+  const getBooksList = async()=>{
+    const res = await axios.get("/api/bible/books") 
+    console.log(res)
+    let tempbooks =res.data.data.map((book:Book)=>{
+      return {id:book.id,name:book.name,chapters:50}
+    })
+    setBibleBooks(tempbooks)
+    // console.log(bibleBooks)
+
   }
 
   return (

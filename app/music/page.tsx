@@ -29,7 +29,7 @@ export default function MusicPage() {
     const tokenRes = await fetch("/api/spotify-token", { method: "POST" })
     const { access_token } = await tokenRes.json()
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${encodeURIComponent(DEFAULT_MALAYALAM_QUERY)}&type=track&limit=12`,
+      `https://api.spotify.com/v1/search?q=${encodeURIComponent(DEFAULT_MALAYALAM_QUERY)}&type=track&limit=16`,
       { headers: { Authorization: `Bearer ${access_token}` } }
     )
     const data = await res.json()
@@ -56,25 +56,7 @@ export default function MusicPage() {
     setLoading(false)
   }
 
-  const playPreview = (track: any) => {
-    if (audio) {
-      audio.pause()
-      setAudio(null)
-    }
-    if (playingTrack && playingTrack.id === track.id) {
-      setPlayingTrack(null)
-      return
-    }
-    if (track.preview_url) {
-      const newAudio = new Audio(track.preview_url)
-      newAudio.play()
-      setAudio(newAudio)
-      setPlayingTrack(track)
-      newAudio.onended = () => setPlayingTrack(null)
-    } else {
-      setPlayingTrack(track) // For iframe fallback
-    }
-  }
+
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">
@@ -120,16 +102,7 @@ export default function MusicPage() {
                     height={600}
                     className="w-full h-full object-cover"
                   />
-                  <button
-                    className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition"
-                    onClick={() => playPreview(track)}
-                  >
-                    {playingTrack && playingTrack.id === track.id && track.preview_url ? (
-                      <Pause className="h-12 w-12 text-white" />
-                    ) : (
-                      <Play className="h-12 w-12 text-white" />
-                    )}
-                  </button>
+             
                 </div>
                 <CardContent className="p-4">
                   <div className="font-semibold truncate">{track.name}</div>
