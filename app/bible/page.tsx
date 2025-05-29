@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Book, BookOpen, Bookmark, Search, Heart } from "lucide-react"
 import axios from "axios"
+import parse from "html-react-parser"
 // Mock Bible books for demonstration
 
 
@@ -46,18 +47,21 @@ let Chapter ={
 }
 
 export default function BiblePage() {
-  const [selectedBook, setSelectedBook] = useState("john")
-  const [selectedChapter, setSelectedChapter] = useState("3")
+  const [selectedBook, setSelectedBook] = useState("GEN")
+  const [selectedChapter, setSelectedChapter] = useState("1")
   const [searchQuery, setSearchQuery] = useState("")
 
  
-  let [selectedChapterId,setSelectedChapterId]=useState("GEN.1")
+  let [selectedChapterId,setSelectedChapterId]=useState("GEN.2")
   let [chapterContent,setChapterContent] = useState("")
 
   useEffect(()=>{
-    setSelectedChapterId(`${selectedBook}.${selectedChapter}`)
-    getChaptersContent()
-  },[selectedChapter])
+    console.log(selectedBook,selectedChapter)
+    const chapterId = `${selectedBook}.${selectedChapter}`;
+    setSelectedChapterId(chapterId);
+    console.log(selectedChapterId)
+    getChaptersContent(`${selectedBook}.${selectedChapter}`)
+  },[selectedChapter,selectedBook])
 
   type BibleBookState = {
     id: string;
@@ -76,10 +80,10 @@ export default function BiblePage() {
     })
   }
 
-  const getChaptersContent = async()=>{
-    const res = await axios.post('/api/bible/chapter',{chapter_id:selectedChapterId})
-    console.log(res)
-    setChapterContent(res.data)
+  const getChaptersContent = async(input:string)=>{
+    const res = await axios.post('/api/bible/chapter',{chapter_id:input})
+    setChapterContent(res.data.data.content)
+    console.log(chapterContent)
   }
   type Book = {
     id: string;
@@ -113,12 +117,11 @@ export default function BiblePage() {
   },[])
   const getBooksList = async()=>{
     const res = await axios.get("/api/bible/books") 
-    console.log(res)
     let tempbooks =res.data.data.map((book:Book)=>{
       return {id:book.id,name:book.name,chapters_no:book.chapters.length,chapters:book.chapters}
     })
     setBibleBooks(tempbooks)
-    // console.log(bibleBooks)
+  
 
   }
 
@@ -226,10 +229,10 @@ export default function BiblePage() {
             <Card className="h-full">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div>
-                  <CardTitle className="text-2xl">{passage.reference}</CardTitle>
-                  <CardDescription>
+                  {/* <CardTitle className="text-2xl">{passage.reference}</CardTitle> */}
+                  <CardTitle>
                     {bibleBooks.find(b => b.id === selectedBook)?.name} {selectedChapter}
-                  </CardDescription>
+                  </CardTitle>
                 </div>
                 <Button variant="outline" size="icon">
                   <Heart className="h-4 w-4" />
@@ -238,12 +241,7 @@ export default function BiblePage() {
               <CardContent>
                 <ScrollArea className="h-[550px] pr-4">
                   <div className="space-y-4 text-lg font-playfair">
-                    {passage.verses.map((verse) => (
-                      <p key={verse.number} className="leading-relaxed">
-                        <sup className="text-primary font-bold mr-1">{verse.number}</sup>
-                        {verse.text}
-                      </p>
-                    ))}
+                      {parse(chapterContent)}
                   </div>
                 </ScrollArea>
               </CardContent>
