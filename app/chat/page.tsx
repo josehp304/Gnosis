@@ -212,7 +212,7 @@ export default function ChatPage() {
                 className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <Send className="h-5 w-5 md:h-6 md:w-6" />
-                <span className="sr-only">Send message</span>
+                <span className="">Send</span>
               </Button>
             </form>
           </CardFooter>
