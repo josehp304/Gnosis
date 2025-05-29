@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Book, MessageCircle, Menu, Music, Users, UserCircle } from "lucide-react"
+import { Book, MessageCircle, Menu, Music, Users, UserCircle, Heart } from "lucide-react"
 
 const Navigation = () => {
   const pathname = usePathname()
@@ -18,6 +18,12 @@ const Navigation = () => {
       label: "Chat",
       icon: MessageCircle,
       active: pathname === "/chat",
+    },
+    {
+      href: "/prayers",
+      label: "Prayers",
+      icon: Heart,
+      active: pathname === "/prayers" || pathname?.startsWith("/prayers/"),
     },
     {
       href: "/music",
@@ -67,8 +73,8 @@ const Navigation = () => {
                     href={route.href}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-                      route.active 
-                        ? "bg-primary/10 text-primary" 
+                      route.active
+                        ? "bg-primary/10 text-primary"
                         : "hover:bg-muted"
                     }`}
                   >
