@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -50,11 +50,20 @@ export default function BiblePage() {
   const [selectedChapter, setSelectedChapter] = useState("3")
   const [searchQuery, setSearchQuery] = useState("")
 
+ 
+  let [selectedChapterId,setSelectedChapterId]=useState("GEN.1")
+  let [chapterContent,setChapterContent] = useState("")
+
+  useEffect(()=>{
+    setSelectedChapterId(`${selectedBook}.${selectedChapter}`)
+    getChaptersContent()
+  },[selectedChapter])
 
   type BibleBookState = {
     id: string;
     name: string;
-    chapters: number;
+    chapters_no: number;
+    chapters:Chapter[]
   };
   let [bibleBooks,setBibleBooks] = useState<BibleBookState[]>([])
 
@@ -62,7 +71,15 @@ export default function BiblePage() {
   const getChaptersForBook = (bookId: string) => {
     const book = bibleBooks.find(b => b.id === bookId)
     if (!book) return []
-    return Array.from({ length: book.chapters }, (_, i) => i + 1)
+    return book.chapters.map((chapter)=>{
+     return  chapter.number
+    })
+  }
+
+  const getChaptersContent = async()=>{
+    const res = await axios.post('/api/bible/chapter',{chapter_id:selectedChapterId})
+    console.log(res)
+    setChapterContent(res.data)
   }
   type Book = {
     id: string;
@@ -70,7 +87,7 @@ export default function BiblePage() {
     abbreviation: string;
     name: string;
     nameLong: string;
-    // chapters: Chapter[];
+    chapters: Chapter[];
   };
   
   type Chapter = {
@@ -79,7 +96,7 @@ export default function BiblePage() {
     bookId: string;
     number: string;
     position: number;
-    sections: Section[];
+    // sections: Section[];
   };
   
   type Section = {
@@ -98,7 +115,7 @@ export default function BiblePage() {
     const res = await axios.get("/api/bible/books") 
     console.log(res)
     let tempbooks =res.data.data.map((book:Book)=>{
-      return {id:book.id,name:book.name,chapters:50}
+      return {id:book.id,name:book.name,chapters_no:book.chapters.length,chapters:book.chapters}
     })
     setBibleBooks(tempbooks)
     // console.log(bibleBooks)
@@ -160,7 +177,7 @@ export default function BiblePage() {
                       </SelectTrigger>
                       <SelectContent>
                         {getChaptersForBook(selectedBook).map((chapter) => (
-                          <SelectItem key={chapter} value={chapter.toString()}>
+                          <SelectItem key={chapter} value={chapter}>
                             {chapter}
                           </SelectItem>
                         ))}
