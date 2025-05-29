@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Book, MessageCircle, Menu, Music, Users, UserCircle } from "lucide-react"
-
+import { SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,} from "@clerk/nextjs"
 const Navigation = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
@@ -117,12 +121,17 @@ const Navigation = () => {
         <div className="flex items-center gap-3">
           <ModeToggle />
           <div className="hidden sm:flex items-center gap-2">
-            <Button asChild variant="ghost" size="sm">
-              <Link href="/auth/login">Log in</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href="/auth/register">Sign up</Link>
-            </Button>
+            <SignedOut>
+              <Button asChild variant="ghost" size="sm">
+                <SignInButton />
+              </Button>
+              <Button asChild size="sm">
+                <SignUpButton />
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
           <Button variant="ghost" size="icon" className="sm:hidden">
             <UserCircle className="h-5 w-5" />
