@@ -211,9 +211,11 @@ export default function ChatPage() {
                 disabled={isLoading || !input.trim()}
                 className="relative flex items-center justify-center h-[56px] w-[56px] md:h-[64px] md:w-[64px] rounded-full bg-gradient-to-br from-purple-500 via-pink-400 to-yellow-400 shadow-xl hover:shadow-2xl border-2 border-white/30 dark:border-gray-800/40 backdrop-blur-md transition-all duration-300 transform hover:scale-110 active:scale-95 focus:ring-4 focus:ring-pink-200/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group"
               >
+
                 <span className="absolute inset-0 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300 pointer-events-none" />
                 <Send className="relative z-10 h-6 w-6 md:h-7 md:w-7 text-white drop-shadow-lg group-hover:animate-send-bounce" />
                 <span className="sr-only">Send message</span>
+
               </Button>
             </form>
           </CardFooter>

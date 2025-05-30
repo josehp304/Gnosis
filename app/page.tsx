@@ -81,7 +81,7 @@ export default function Home() {
                 aria-label="Start your spiritual journey with Gnosis"
               >
                 <Link href="/chat" className="flex items-center">
-                  Begin Your Journey <ArrowRight className="ml-3 h-5 w-5" />
+                  Start Chatting <ArrowRight className="ml-3 h-5 w-5" />
                 </Link>
               </Button>
               <Button

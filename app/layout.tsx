@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Crimson_Text } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { ClerkProvider } from '@clerk/nextjs';
 import Navigation from '@/components/navigation';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -24,6 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,5 +45,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

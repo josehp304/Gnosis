@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, use } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,20 +8,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Book, BookOpen, Bookmark, Search, Heart } from "lucide-react"
-
+import axios from "axios"
+import parse from "html-react-parser"
 // Mock Bible books for demonstration
-const bibleBooks = [
-  { id: "genesis", name: "Genesis", chapters: 50 },
-  { id: "exodus", name: "Exodus", chapters: 40 },
-  { id: "leviticus", name: "Leviticus", chapters: 27 },
-  { id: "numbers", name: "Numbers", chapters: 36 },
-  { id: "deuteronomy", name: "Deuteronomy", chapters: 34 },
-  { id: "matthew", name: "Matthew", chapters: 28 },
-  { id: "mark", name: "Mark", chapters: 16 },
-  { id: "luke", name: "Luke", chapters: 24 },
-  { id: "john", name: "John", chapters: 21 },
-  { id: "acts", name: "Acts", chapters: 28 },
-]
+
 
 // Mock passage for demonstration
 const passage = {
@@ -43,16 +33,96 @@ const bookmarks = [
   { id: 3, reference: "Romans 8:28", description: "All things work together for good" },
 ]
 
+const BIBLE_CODE = {
+  en:"bba9f40183526463-01"
+}
+
+let lang = "en" 
+
+let Chapter ={
+  bible_code:'',
+  book_id:'',
+  chatper_id:'',
+
+}
+
 export default function BiblePage() {
-  const [selectedBook, setSelectedBook] = useState("john")
-  const [selectedChapter, setSelectedChapter] = useState("3")
+  const [selectedBook, setSelectedBook] = useState("GEN")
+  const [selectedChapter, setSelectedChapter] = useState("1")
   const [searchQuery, setSearchQuery] = useState("")
+
+ 
+  let [selectedChapterId,setSelectedChapterId]=useState("GEN.2")
+  let [chapterContent,setChapterContent] = useState("")
+
+  useEffect(()=>{
+    console.log(selectedBook,selectedChapter)
+    const chapterId = `${selectedBook}.${selectedChapter}`;
+    setSelectedChapterId(chapterId);
+    console.log(selectedChapterId)
+    getChaptersContent(`${selectedBook}.${selectedChapter}`)
+  },[selectedChapter,selectedBook])
+
+  type BibleBookState = {
+    id: string;
+    name: string;
+    chapters_no: number;
+    chapters:Chapter[]
+  };
+  let [bibleBooks,setBibleBooks] = useState<BibleBookState[]>([])
 
   // Generate an array of chapters for the selected book
   const getChaptersForBook = (bookId: string) => {
     const book = bibleBooks.find(b => b.id === bookId)
     if (!book) return []
-    return Array.from({ length: book.chapters }, (_, i) => i + 1)
+    return book.chapters.map((chapter)=>{
+     return  chapter.number
+    })
+  }
+
+  const getChaptersContent = async(input:string)=>{
+    const res = await axios.post('/api/bible/chapter',{chapter_id:input})
+    setChapterContent(res.data.data.content)
+    console.log(chapterContent)
+  }
+  type Book = {
+    id: string;
+    bibleId: string;
+    abbreviation: string;
+    name: string;
+    nameLong: string;
+    chapters: Chapter[];
+  };
+  
+  type Chapter = {
+    id: string;
+    bibleId: string;
+    bookId: string;
+    number: string;
+    position: number;
+    // sections: Section[];
+  };
+  
+  type Section = {
+    id: string;
+    bibleId: string;
+    title: string;
+    firstVerseId: string;
+    lastVerseId: string;
+    firstVerseOrgId: string;
+    lastVerseOrgId: string;
+  };
+  useEffect(()=>{
+    getBooksList()
+  },[])
+  const getBooksList = async()=>{
+    const res = await axios.get("/api/bible/books") 
+    let tempbooks =res.data.data.map((book:Book)=>{
+      return {id:book.id,name:book.name,chapters_no:book.chapters.length,chapters:book.chapters}
+    })
+    setBibleBooks(tempbooks)
+  
+
   }
 
   return (
@@ -110,7 +180,7 @@ export default function BiblePage() {
                       </SelectTrigger>
                       <SelectContent>
                         {getChaptersForBook(selectedBook).map((chapter) => (
-                          <SelectItem key={chapter} value={chapter.toString()}>
+                          <SelectItem key={chapter} value={chapter}>
                             {chapter}
                           </SelectItem>
                         ))}
@@ -159,10 +229,10 @@ export default function BiblePage() {
             <Card className="h-full">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div>
-                  <CardTitle className="text-2xl">{passage.reference}</CardTitle>
-                  <CardDescription>
+                  {/* <CardTitle className="text-2xl">{passage.reference}</CardTitle> */}
+                  <CardTitle>
                     {bibleBooks.find(b => b.id === selectedBook)?.name} {selectedChapter}
-                  </CardDescription>
+                  </CardTitle>
                 </div>
                 <Button variant="outline" size="icon">
                   <Heart className="h-4 w-4" />
@@ -171,12 +241,7 @@ export default function BiblePage() {
               <CardContent>
                 <ScrollArea className="h-[550px] pr-4">
                   <div className="space-y-4 text-lg font-playfair">
-                    {passage.verses.map((verse) => (
-                      <p key={verse.number} className="leading-relaxed">
-                        <sup className="text-primary font-bold mr-1">{verse.number}</sup>
-                        {verse.text}
-                      </p>
-                    ))}
+                      {parse(chapterContent)}
                   </div>
                 </ScrollArea>
               </CardContent>
