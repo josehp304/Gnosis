@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowRight, MessageCircle, Music, Users, UserCircle, Book } from 'lucide-react';
+import { ArrowRight, MessageCircle, Music, Users, UserCircle, Book, Heart, Crown, Sparkles, Cross, Star, Shield, Lightbulb, Play, ChevronRight, Headphones } from 'lucide-react';
 import React from 'react';
 
 export default function Home() {
@@ -113,241 +113,897 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Elegant Divider */}
-      <div className="relative">
+      {/* Sacred Mandala Divider */}
+      <div className="relative py-8">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-border/30"></div>
+          <div className="w-full border-t border-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
         </div>
         <div className="relative flex justify-center">
-          <div className="bg-background px-6">
-            <svg className="h-6 w-6 text-muted-foreground/40" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+          <div className="bg-background px-8">
+            <div className="w-16 h-16 relative">
+              <svg viewBox="0 0 100 100" className="w-full h-full text-primary/30">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="1"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.8"/>
+                <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="0.6"/>
+                <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="0.4"/>
+                <path d="M50,10 L55,25 L50,40 L45,25 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M50,60 L55,75 L50,90 L45,75 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M10,50 L25,55 L40,50 L25,45 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M60,50 L75,55 L90,50 L75,45 Z" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <section className="py-20 md:py-28 bg-background">
+      {/* AI Spiritual Guidance Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-primary/5 via-background to-primary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
-              Guiding Your Spiritual Journey
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Discover tools and community designed to deepen your faith and strengthen your connection with the divine.
-            </p>
-          </div>
-
-          {/* Features Grid - Redesigned for better alignment */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Row 1: Primary Features */}
-            <div className="group">
-              <div className="sacred-card p-8 h-full sacred-glow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-primary/10 p-3 rounded-xl w-14 h-14 flex items-center justify-center mr-4">
-                    <MessageCircle className="h-7 w-7 text-primary" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <MessageCircle className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-crimson-bold text-foreground">Spiritual Guidance</h3>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    AI Spiritual Guidance
+                  </h2>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Receive biblically-sound guidance through our AI-powered chatbot, designed to provide spiritual wisdom and encouragement.
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Receive personalized spiritual guidance powered by AI, grounded in Catholic teachings and Biblical wisdom.
+                  Ask questions, seek comfort, and grow in your faith journey.
                 </p>
-                <Button asChild variant="link" className="p-0 text-white hover:text-white font-medium self-start">
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Lightbulb className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Biblical Wisdom</h4>
+                    <p className="text-muted-foreground">Get answers rooted in Scripture and Catholic tradition</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Compassionate Support</h4>
+                    <p className="text-muted-foreground">Find comfort and encouragement in times of need</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Star className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">24/7 Availability</h4>
+                    <p className="text-muted-foreground">Spiritual guidance whenever you need it most</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
                   <Link href="/chat">
-                    Start conversation <ArrowRight className="ml-1 h-4 w-4" />
+                    Start Conversation <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="sacred-card p-8 h-full sacred-glow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-accent/10 p-3 rounded-xl w-14 h-14 flex items-center justify-center mr-4">
-                    <Book className="h-7 w-7 text-accent" />
-                  </div>
-                  <h3 className="text-xl font-crimson-bold text-foreground">Sacred Scripture</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Read, study, and meditate on God's Word with our comprehensive Bible reader and study tools.
-                </p>
-                <Button asChild variant="link" className="p-0 text-white hover:text-white font-medium self-start">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
                   <Link href="/bible">
-                    Read Scripture <ArrowRight className="ml-1 h-4 w-4" />
+                    <Book className="mr-2 h-5 w-5" />
+                    Read Scripture
                   </Link>
                 </Button>
               </div>
             </div>
 
-            <div className="group">
-              <div className="sacred-card p-8 h-full sacred-glow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-primary/10 p-3 rounded-xl w-14 h-14 flex items-center justify-center mr-4">
-                    <UserCircle className="h-7 w-7 text-primary" />
+            <div className="relative">
+              <div className="sacred-card p-8 sacred-glow">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <MessageCircle className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="bg-muted/30 rounded-xl p-4 flex-1">
+                      <p className="text-sm text-muted-foreground italic">
+                        "How can I find peace during difficult times?"
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-crimson-bold text-foreground">Holy Lives</h3>
+                  <div className="flex items-start gap-3 justify-end">
+                    <div className="bg-primary/10 rounded-xl p-4 flex-1 max-w-md">
+                      <p className="text-sm leading-relaxed">
+                        "Peace I leave with you; my peace I give you. I do not give to you as the world gives.
+                        Do not let your hearts be troubled and do not be afraid." - John 14:27
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Trust in God's promises and find comfort in prayer...
+                      </p>
+                    </div>
+                    <div className="bg-primary p-2 rounded-full">
+                      <Sparkles className="h-5 w-5 text-white" />
+                    </div>
+                  </div>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Discover inspiring stories of saints who walked before us. Learn from their faith, courage, and devotion to God.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cross Divider */}
+      <div className="relative py-8">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-sacred-teal/20"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-sacred-teal/10 rounded-full flex items-center justify-center">
+              <Cross className="h-6 w-6 text-sacred-teal" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Catholic Prayers Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-sacred-teal/5 via-background to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="bg-sacred-teal/10 p-3 rounded-xl w-12 h-12 mx-auto mb-4">
+                    <Heart className="h-6 w-6 text-sacred-teal" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">Our Father</h4>
+                  <p className="text-sm text-muted-foreground">The Lord's Prayer</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="bg-accent/10 p-3 rounded-xl w-12 h-12 mx-auto mb-4">
+                    <Star className="h-6 w-6 text-accent" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">Hail Mary</h4>
+                  <p className="text-sm text-muted-foreground">Ave Maria</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="bg-primary/10 p-3 rounded-xl w-12 h-12 mx-auto mb-4">
+                    <Shield className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">Apostles' Creed</h4>
+                  <p className="text-sm text-muted-foreground">Statement of Faith</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="bg-sacred-teal/10 p-3 rounded-xl w-12 h-12 mx-auto mb-4">
+                    <Cross className="h-6 w-6 text-sacred-teal" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">Act of Contrition</h4>
+                  <p className="text-sm text-muted-foreground">Prayer of Repentance</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-sacred-teal/10 p-3 rounded-xl">
+                    <Heart className="h-8 w-8 text-sacred-teal" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    Catholic Prayers
+                  </h2>
+                </div>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Discover the rich tradition of Catholic prayers. From the fundamental prayers every Catholic should know
+                  to beautiful devotional prayers that deepen your relationship with God.
                 </p>
-                <Button asChild variant="link" className="p-0 text-white hover:text-white font-medium self-start">
-                  <Link href="/saints">
-                    Explore saints <ArrowRight className="ml-1 h-4 w-4" />
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Book className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Traditional Prayers</h4>
+                    <p className="text-muted-foreground">Essential Catholic prayers passed down through generations</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Star className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Devotional Prayers</h4>
+                    <p className="text-muted-foreground">Beautiful prayers for personal meditation and reflection</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Marian Prayers</h4>
+                    <p className="text-muted-foreground">Prayers honoring the Blessed Virgin Mary</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
+                  <Link href="/prayers">
+                    Explore Prayers <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/rosary">
+                    <Crown className="mr-2 h-5 w-5" />
+                    Pray Rosary
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Crown Divider */}
+      <div className="relative py-8">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-accent/20"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+              <Crown className="h-6 w-6 text-accent" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Holy Rosary Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-accent/5 via-background to-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-accent/10 p-3 rounded-xl">
+                    <Crown className="h-8 w-8 text-accent" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    The Holy Rosary
+                  </h2>
+                </div>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Join in the traditional Catholic prayer of the Rosary, meditating on the mysteries of our faith
+                  while honoring the Blessed Virgin Mary. Experience guided prayer with automatic mystery selection.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Joyful Mysteries</h4>
+                    <p className="text-muted-foreground">Monday & Saturday - The Incarnation and early life of Jesus</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Cross className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Sorrowful Mysteries</h4>
+                    <p className="text-muted-foreground">Tuesday & Friday - The Passion and Death of Jesus</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Crown className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Glorious Mysteries</h4>
+                    <p className="text-muted-foreground">Wednesday & Sunday - The Resurrection and eternal glory</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Lightbulb className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Luminous Mysteries</h4>
+                    <p className="text-muted-foreground">Thursday - The public ministry of Jesus</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
+                  <Link href="/rosary">
+                    Pray the Rosary <Crown className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/prayers">
+                    <Heart className="mr-2 h-5 w-5" />
+                    View All Prayers
                   </Link>
                 </Button>
               </div>
             </div>
 
-            {/* Row 2: Secondary Features */}
-            <div className="group md:col-start-1 lg:col-start-auto">
-              <div className="sacred-card p-8 h-full sacred-glow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-sacred-teal/10 p-3 rounded-xl w-14 h-14 flex items-center justify-center mr-4">
-                    <Music className="h-7 w-7 text-sacred-teal" />
+            <div className="relative">
+              <div className="sacred-card p-8 sacred-glow">
+                <div className="text-center space-y-6">
+                  <div className="w-24 h-24 bg-accent/10 rounded-full mx-auto flex items-center justify-center">
+                    <Crown className="h-12 w-12 text-accent" />
                   </div>
-                  <h3 className="text-xl font-crimson-bold text-foreground">Devotional Music</h3>
+                  <div>
+                    <h3 className="text-2xl font-crimson-bold mb-2">Today's Mystery</h3>
+                    <p className="text-lg text-primary font-medium mb-2">Joyful Mysteries</p>
+                    <p className="text-muted-foreground">
+                      "The Annunciation, The Visitation, The Nativity, The Presentation, The Finding in the Temple"
+                    </p>
+                  </div>
+                  <div className="bg-accent/5 rounded-lg p-4">
+                    <p className="text-sm text-muted-foreground italic">
+                      "Hail Mary, full of grace, the Lord is with thee..."
+                    </p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Discover and create playlists of inspirational music to enhance your worship and meditation experience.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Music Note Divider */}
+      <div className="relative py-8">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-primary/20"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <Music className="h-6 w-6 text-primary" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Devotional Music Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-primary/5 via-background to-sacred-teal/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="sacred-card p-8 sacred-glow">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center">
+                      <Play className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-crimson-bold text-lg">Now Playing</h4>
+                      <p className="text-muted-foreground">Ave Maria - Schubert</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 bg-muted/20 rounded-lg">
+                      <div className="w-8 h-8 bg-sacred-teal/10 rounded-full flex items-center justify-center">
+                        <Music className="h-4 w-4 text-sacred-teal" />
+                      </div>
+                      <span className="text-sm">Gregorian Chant Collection</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-muted/20 rounded-lg">
+                      <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center">
+                        <Music className="h-4 w-4 text-accent" />
+                      </div>
+                      <span className="text-sm">Contemporary Christian Hymns</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-muted/20 rounded-lg">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Music className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="text-sm">Meditation & Prayer Music</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <Music className="h-8 w-8 text-primary" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    Devotional Music
+                  </h2>
+                </div>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Enhance your prayer and meditation with beautiful sacred music. From traditional Gregorian chant
+                  to contemporary Christian music, find the perfect soundtrack for your spiritual journey.
                 </p>
-                <Button asChild variant="link" className="p-0 text-white hover:text-white font-medium self-start">
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Music className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Sacred Classics</h4>
+                    <p className="text-muted-foreground">Timeless hymns and classical sacred compositions</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Meditation Music</h4>
+                    <p className="text-muted-foreground">Peaceful instrumental music for prayer and reflection</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Play className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Curated Playlists</h4>
+                    <p className="text-muted-foreground">Specially crafted playlists for different spiritual moods</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
                   <Link href="/music">
-                    Explore music <ArrowRight className="ml-1 h-4 w-4" />
+                    Explore Music <Music className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/chat">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Ask for Recommendations
                   </Link>
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="group md:col-start-2 lg:col-start-auto">
-              <div className="sacred-card p-8 h-full sacred-glow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-sacred-teal/10 p-3 rounded-xl w-14 h-14 flex items-center justify-center mr-4">
-                    <Users className="h-7 w-7 text-sacred-teal" />
+      {/* Community Divider */}
+      <div className="relative py-8">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-sacred-teal/20"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-sacred-teal/10 rounded-full flex items-center justify-center">
+              <Users className="h-6 w-6 text-sacred-teal" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Faith Community Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-sacred-teal/5 via-background to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-sacred-teal/10 p-3 rounded-xl">
+                    <Users className="h-8 w-8 text-sacred-teal" />
                   </div>
-                  <h3 className="text-xl font-crimson-bold text-foreground">Faith Community</h3>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    Faith Community
+                  </h2>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Connect with others on similar spiritual journeys. Create or join circles for discussion, prayer, and mutual encouragement.
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Connect with fellow believers in our vibrant faith community. Join study groups, prayer circles,
+                  and find spiritual counseling support from certified counselors.
                 </p>
-                <Button asChild variant="link" className="p-0 text-white hover:text-white font-medium self-start">
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Users className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Jesus Youth Community</h4>
+                    <p className="text-muted-foreground">Teens (320), Campus (100), and Professionals (40) groups</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Prayer Circles</h4>
+                    <p className="text-muted-foreground">Share prayer requests and thanksgiving with the community</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Headphones className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Spiritual Counseling</h4>
+                    <p className="text-muted-foreground">Professional guidance available 10AM-5PM daily</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
                   <Link href="/community">
-                    Join community <ArrowRight className="ml-1 h-4 w-4" />
+                    Join Community <Users className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/chat">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Get Guidance
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="grid grid-cols-1 gap-4">
+                <div className="sacred-card p-6 sacred-glow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Users className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-crimson-bold">Jesus Youth Teens</h4>
+                      <p className="text-sm text-muted-foreground">320 members</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    "Don't forget about our youth retreat this weekend! 🙏✨"
+                  </p>
+                </div>
+                <div className="sacred-card p-6 sacred-glow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-sacred-teal/10 rounded-full flex items-center justify-center">
+                      <Heart className="h-5 w-5 text-sacred-teal" />
+                    </div>
+                    <div>
+                      <h4 className="font-crimson-bold">Prayer Circle</h4>
+                      <p className="text-sm text-muted-foreground">156 members</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    "Please pray for my grandmother's recovery. Thank you! 🙏"
+                  </p>
+                </div>
+                <div className="sacred-card p-6 sacred-glow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
+                      <Crown className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-crimson-bold">Thanksgiving Circle</h4>
+                      <p className="text-sm text-muted-foreground">89 members</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    "Praise God! My job interview went well. God is so good! 🙌✨"
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Elegant Divider */}
-      <div className="relative">
+      {/* Saints Divider */}
+      <div className="relative py-8">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-border/30"></div>
+          <div className="w-full border-t border-accent/20"></div>
         </div>
         <div className="relative flex justify-center">
-          <div className="bg-background px-6">
-            <svg className="h-6 w-6 text-muted-foreground/40" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+              <UserCircle className="h-6 w-6 text-accent" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Saints Spotlight Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-sacred-light/10 via-background to-sacred-light/20 sacred-pattern">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-crimson-bold mb-6 text-foreground leading-tight">
-              Discover Saints
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Walk in the footsteps of holy men and women who dedicated their lives to God.
-              Their stories of faith, sacrifice, and miracles continue to inspire believers worldwide.
-            </p>
-          </div>
+      {/* Saints Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-accent/5 via-background to-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <UserCircle className="h-8 w-8 text-accent" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">St. Alphonsa</h4>
+                  <p className="text-sm text-muted-foreground">First canonized saint of Indian origin</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Heart className="h-8 w-8 text-primary" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">St. Teresa</h4>
+                  <p className="text-sm text-muted-foreground">Nobel Peace Prize winner</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="w-16 h-16 bg-sacred-teal/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Star className="h-8 w-8 text-sacred-teal" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">St. Francis</h4>
+                  <p className="text-sm text-muted-foreground">Patron saint of animals</p>
+                </div>
+                <div className="sacred-card p-6 text-center sacred-glow">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Shield className="h-8 w-8 text-accent" />
+                  </div>
+                  <h4 className="font-crimson-bold text-lg mb-2">St. Joan</h4>
+                  <p className="text-sm text-muted-foreground">Teenage martyr and hero</p>
+                </div>
+              </div>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Featured Saints Preview */}
-            <div className="sacred-card p-6 text-center sacred-glow">
-              <h4 className="font-crimson-bold text-lg mb-2 text-foreground">St. Alphonsa</h4>
-              <p className="text-sm text-muted-foreground">First canonized saint of Indian origin</p>
-            </div>
-            <div className="sacred-card p-6 text-center sacred-glow">
-              <h4 className="font-crimson-bold text-lg mb-2 text-foreground">St. Teresa of Calcutta</h4>
-              <p className="text-sm text-muted-foreground">Nobel Peace Prize winner</p>
-            </div>
-            <div className="sacred-card p-6 text-center sacred-glow">
-              <h4 className="font-crimson-bold text-lg mb-2 text-foreground">St. Francis of Assisi</h4>
-              <p className="text-sm text-muted-foreground">Patron saint of animals</p>
-            </div>
-            <div className="sacred-card p-6 text-center sacred-glow">
-              <h4 className="font-crimson-bold text-lg mb-2 text-foreground">St. Joan of Arc</h4>
-              <p className="text-sm text-muted-foreground">Teenage martyr and hero</p>
-            </div>
-          </div>
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-accent/10 p-3 rounded-xl">
+                    <UserCircle className="h-8 w-8 text-accent" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    Saints & Holy Lives
+                  </h2>
+                </div>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Walk in the footsteps of holy men and women who dedicated their lives to God.
+                  Their stories of faith, sacrifice, and miracles continue to inspire believers worldwide.
+                </p>
+              </div>
 
-          <div className="text-center space-y-6">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="sacred-button text-lg px-10 py-4 h-auto">
-                <Link href="/saints">
-                  Read Their Stories <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-10 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5">
-                <Link href="/bible">
-                  <Book className="mr-2 h-5 w-5" />
-                  Read Scripture
-                </Link>
-              </Button>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Book className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Inspiring Stories</h4>
+                    <p className="text-muted-foreground">Read detailed biographies of canonized saints</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Star className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Feast Days</h4>
+                    <p className="text-muted-foreground">Learn about their feast days and special celebrations</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Patron Saints</h4>
+                    <p className="text-muted-foreground">Discover which saints can intercede for your needs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
+                  <Link href="/saints">
+                    Explore Saints <UserCircle className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/prayers">
+                    <Heart className="mr-2 h-5 w-5" />
+                    Saint Prayers
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="bg-accent/5 rounded-lg p-4">
+                <p className="text-sm text-muted-foreground italic text-center">
+                  "Therefore, since we are surrounded by such a great cloud of witnesses..." - Hebrews 12:1
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground italic max-w-2xl mx-auto">
-              "Therefore, since we are surrounded by such a great cloud of witnesses..." - Hebrews 12:1
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Elegant Divider */}
-      <div className="relative">
+      {/* Bible Divider */}
+      <div className="relative py-8">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-border/30"></div>
+          <div className="w-full border-t border-primary/20"></div>
         </div>
         <div className="relative flex justify-center">
-          <div className="bg-background px-6">
-            <svg className="h-6 w-6 text-muted-foreground/40" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-            </svg>
+          <div className="bg-background px-8">
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <Book className="h-6 w-6 text-primary" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-sacred-light/20 via-background to-sacred-light/10 sacred-pattern">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-crimson-bold mb-8 text-foreground leading-tight">
-            Begin Your Spiritual Journey Today
-          </h2>
-          <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Join our community of believers seeking wisdom, connection, and spiritual growth through modern technology.
-          </p>
-          <Button asChild size="lg" className="sacred-button text-lg px-12 py-4 h-auto">
-            <Link href="/auth/register">
-              Create Your Account
-            </Link>
-          </Button>
+      {/* Sacred Scripture Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-primary/5 via-background to-sacred-teal/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <Book className="h-8 w-8 text-primary" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                    Sacred Scripture
+                  </h2>
+                </div>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Read, study, and meditate on God's Word with our comprehensive Bible reader.
+                  Access multiple translations and study tools to deepen your understanding of Scripture.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-sacred-teal/10 p-2 rounded-lg mt-1">
+                    <Book className="h-5 w-5 text-sacred-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Multiple Translations</h4>
+                    <p className="text-muted-foreground">Access various Bible translations for deeper study</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-accent/10 p-2 rounded-lg mt-1">
+                    <Lightbulb className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Study Tools</h4>
+                    <p className="text-muted-foreground">Commentary, cross-references, and study notes</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg mt-1">
+                    <Heart className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-crimson-bold text-lg mb-1">Daily Readings</h4>
+                    <p className="text-muted-foreground">Follow the liturgical calendar with daily Scripture</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="sacred-button text-lg px-8 py-4 h-auto hover:scale-105 transition-all duration-300">
+                  <Link href="/bible">
+                    Read Scripture <Book className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
+                  <Link href="/chat">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Ask About Scripture
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="sacred-card p-8 sacred-glow">
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Book className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-crimson-bold mb-2">Verse of the Day</h3>
+                  </div>
+                  <div className="bg-primary/5 rounded-lg p-6 text-center">
+                    <p className="text-lg leading-relaxed mb-4 font-crimson">
+                      "Trust in the Lord with all your heart and lean not on your own understanding;
+                      in all your ways submit to him, and he will make your paths straight."
+                    </p>
+                    <p className="text-sm text-primary font-medium">Proverbs 3:5-6</p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3 text-center">
+                    <div className="bg-muted/20 rounded-lg p-3">
+                      <p className="text-xs text-muted-foreground">Old Testament</p>
+                      <p className="font-crimson-bold">39 Books</p>
+                    </div>
+                    <div className="bg-muted/20 rounded-lg p-3">
+                      <p className="text-xs text-muted-foreground">New Testament</p>
+                      <p className="font-crimson-bold">27 Books</p>
+                    </div>
+                    <div className="bg-muted/20 rounded-lg p-3">
+                      <p className="text-xs text-muted-foreground">Total Verses</p>
+                      <p className="font-crimson-bold">31,102</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mt-6 flex justify-center">
-          <Button asChild size="lg" variant="outline" className="text-lg px-12 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5">
-            <Link
-              href="/auth/login"
-              className="hover:text-white text-white"
-            >
-              Log In
-            </Link>
-          </Button>
+      </section>
+
+      {/* Final Sacred Divider */}
+      <div className="relative py-12">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="bg-background px-12">
+            <div className="w-20 h-20 relative">
+              <svg viewBox="0 0 100 100" className="w-full h-full text-accent/20">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="1"/>
+                <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.8"/>
+                <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.6"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="0.4"/>
+                <circle cx="50" cy="50" r="5" fill="currentColor" opacity="0.6"/>
+                <path d="M50,5 L55,20 L50,35 L45,20 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M50,65 L55,80 L50,95 L45,80 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M5,50 L20,55 L35,50 L20,45 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M65,50 L80,55 L95,50 L80,45 Z" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Final Call to Action */}
+      <section className="py-24 md:py-32 bg-gradient-to-br from-sacred-light/20 via-background to-sacred-light/10 sacred-pattern">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl font-crimson-bold text-foreground leading-tight">
+                Begin Your Spiritual Journey Today
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Join our community of believers seeking wisdom, connection, and spiritual growth through modern technology.
+                Experience the beauty of Catholic faith with AI guidance, sacred prayers, and meaningful community.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <Button asChild size="lg" className="sacred-button text-lg px-12 py-5 h-auto hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Link href="/auth/register">
+                  Create Your Account <ArrowRight className="ml-3 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="text-lg px-12 py-5 h-auto border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                <Link href="/auth/login">
+                  Log In <ChevronRight className="ml-3 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="pt-8">
+              <p className="text-sm text-muted-foreground italic max-w-2xl mx-auto leading-relaxed">
+                "Come to me, all you who are weary and burdened, and I will give you rest." - Matthew 11:28
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
