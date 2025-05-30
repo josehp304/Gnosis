@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 
 // Group types
-type GroupType = "study" | "prayer" | "counselling" | "general"
+type GroupType = "community" | "prayer" | "counselling" | "study"
 
 interface CommunityGroup {
   id: number
@@ -36,114 +36,101 @@ interface CommunityGroup {
 
 // Mock data for community groups
 const mockGroups: CommunityGroup[] = [
-  // Study Groups
+  // Jesus Youth Community Groups
   {
     id: 1,
-    name: "Gospel of John Study",
-    description: "Deep dive into the Gospel of John with weekly discussions and reflections.",
-    members: 28,
+    name: "Jesus Youth Teens Community",
+    description: "A vibrant community for teenagers to grow in faith, share experiences, and support each other in their spiritual journey.",
+    members: 320,
     image: null,
     isPrivate: false,
-    latestMessage: "Tomorrow we'll explore John 3:16 and its profound meaning.",
-    type: "study",
+    latestMessage: "Hey everyone! Don't forget about our youth retreat this weekend. So excited to see you all there! 🙏✨",
+    type: "community",
     isActive: true,
-    lastActivity: new Date(2024, 0, 15, 14, 30),
-    moderator: "Pastor Michael"
+    lastActivity: new Date(2024, 0, 15, 19, 45),
+    moderator: "Youth Leader Maria"
   },
   {
     id: 2,
-    name: "Theology & Doctrine",
-    description: "Advanced theological discussions for mature believers.",
-    members: 15,
+    name: "Jesus Youth Campus Community",
+    description: "Connect with fellow college students and young adults navigating faith in academic environments.",
+    members: 100,
     image: null,
-    isPrivate: true,
-    latestMessage: "Great insights on the Trinity doctrine today!",
-    type: "study",
+    isPrivate: false,
+    latestMessage: "Finals week prayers needed! Let's support each other through this challenging time. God's got us! 📚🙏",
+    type: "community",
     isActive: true,
-    lastActivity: new Date(2024, 0, 15, 16, 45),
-    moderator: "Dr. Sarah"
+    lastActivity: new Date(2024, 0, 15, 16, 30),
+    moderator: "Campus Minister John"
   },
   {
     id: 3,
-    name: "Proverbs Wisdom Circle",
-    description: "Daily wisdom from Proverbs for practical Christian living.",
-    members: 42,
+    name: "Jesus Youth Professionals",
+    description: "A community for working professionals to integrate faith into their career and daily work life.",
+    members: 40,
     image: null,
     isPrivate: false,
-    latestMessage: "Proverbs 27:17 - Iron sharpens iron, so one person sharpens another.",
-    type: "study",
+    latestMessage: "Great discussion on work-life balance and finding God in our daily tasks. Thanks for sharing your insights!",
+    type: "community",
     isActive: true,
-    lastActivity: new Date(2024, 0, 15, 9, 15),
-    moderator: "Elder Ruth"
+    lastActivity: new Date(2024, 0, 15, 14, 15),
+    moderator: "Professional Mentor Sarah"
   },
 
-  // Prayer Groups
-  {
-    id: 4,
-    name: "Prayer Warriors",
-    description: "24/7 prayer support for urgent requests and ongoing needs.",
-    members: 67,
-    image: null,
-    isPrivate: false,
-    latestMessage: "Please pray for healing for Maria's surgery tomorrow.",
-    type: "prayer",
-    isActive: true,
-    lastActivity: new Date(2024, 0, 15, 18, 20),
-    moderator: "Sister Grace"
-  },
-  {
-    id: 5,
-    name: "Healing & Restoration",
-    description: "Focused prayers for physical, emotional, and spiritual healing.",
-    members: 34,
-    image: null,
-    isPrivate: false,
-    latestMessage: "Testimony: John's depression is lifting! Praise God!",
-    type: "prayer",
-    isActive: true,
-    lastActivity: new Date(2024, 0, 15, 17, 10),
-    moderator: "Pastor David"
-  },
+  // Study Groups
   {
     id: 6,
-    name: "Family & Relationships",
-    description: "Prayer support for marriages, children, and family challenges.",
-    members: 23,
-    image: null,
-    isPrivate: true,
-    latestMessage: "Praying for wisdom in parenting teenagers.",
-    type: "prayer",
-    isActive: true,
-    lastActivity: new Date(2024, 0, 15, 15, 30),
-    moderator: "Counselor Lisa"
-  },
-
-  // General Community
-  {
-    id: 7,
-    name: "Young Adults (18-30)",
-    description: "Faith, fellowship, and fun for young adults navigating life.",
+    name: "Scripture Study Circle",
+    description: "Deep dive into Biblical texts with guided discussions and theological insights for spiritual growth.",
     members: 45,
     image: null,
     isPrivate: false,
-    latestMessage: "Game night this Friday! Who's bringing snacks?",
-    type: "general",
+    latestMessage: "Tonight we're studying Romans 8. Come prepared with questions and an open heart! 📖✨",
+    type: "study",
     isActive: true,
-    lastActivity: new Date(2024, 0, 15, 19, 45),
-    moderator: "Youth Pastor Mark"
+    lastActivity: new Date(2024, 0, 15, 20, 10),
+    moderator: "Bible Scholar Fr. Michael"
   },
   {
-    id: 8,
-    name: "Seniors Fellowship",
-    description: "Wisdom sharing and fellowship for our seasoned believers.",
-    members: 31,
+    id: 7,
+    name: "Catholic Catechism Study",
+    description: "Explore the teachings of the Catholic Church through systematic study of the Catechism.",
+    members: 28,
     image: null,
     isPrivate: false,
-    latestMessage: "Thank you for sharing your testimony, Margaret!",
-    type: "general",
+    latestMessage: "Great discussion on the Trinity today! Next week we'll cover the sacraments. See you there! 🙏",
+    type: "study",
     isActive: true,
-    lastActivity: new Date(2024, 0, 15, 11, 20),
-    moderator: "Elder James"
+    lastActivity: new Date(2024, 0, 15, 19, 30),
+    moderator: "Catechist Sister Mary"
+  },
+
+  // Prayer Circles
+  {
+    id: 4,
+    name: "Prayer Circle",
+    description: "Share your prayer requests and lift each other up in prayer. A sacred space for spiritual support and intercession.",
+    members: 156,
+    image: null,
+    isPrivate: false,
+    latestMessage: "Please pray for my grandmother's recovery. She's having surgery tomorrow morning. Thank you for your prayers! 🙏",
+    type: "prayer",
+    isActive: true,
+    lastActivity: new Date(2024, 0, 15, 18, 20),
+    moderator: "Prayer Coordinator Grace"
+  },
+  {
+    id: 5,
+    name: "Thanksgiving Circle",
+    description: "Share your gratitude and celebrate God's blessings together. A place to give thanks and inspire others with testimonies.",
+    members: 89,
+    image: null,
+    isPrivate: false,
+    latestMessage: "Praise God! My job interview went amazingly well. Thank you all for your prayers. God is so good! 🙌✨",
+    type: "prayer",
+    isActive: true,
+    lastActivity: new Date(2024, 0, 15, 17, 45),
+    moderator: "Gratitude Leader Joy"
   }
 ]
 
@@ -183,7 +170,7 @@ export default function CommunityPage() {
   const [newGroup, setNewGroup] = useState({
     name: "",
     description: "",
-    type: "general" as GroupType,
+    type: "community" as GroupType,
     isPrivate: false
   })
 
@@ -235,7 +222,7 @@ export default function CommunityPage() {
     setNewGroup({
       name: "",
       description: "",
-      type: "general",
+      type: "community",
       isPrivate: false
     })
   }
@@ -266,9 +253,10 @@ export default function CommunityPage() {
   // Get group type icon
   const getGroupTypeIcon = (type: GroupType) => {
     switch (type) {
-      case "study": return <BookOpen className="h-4 w-4" />
+      case "community": return <Users className="h-4 w-4" />
       case "prayer": return <Heart className="h-4 w-4" />
       case "counselling": return <Headphones className="h-4 w-4" />
+      case "study": return <BookOpen className="h-4 w-4" />
       default: return <Users className="h-4 w-4" />
     }
   }
@@ -276,9 +264,10 @@ export default function CommunityPage() {
   // Get group type badge color
   const getGroupTypeBadge = (type: GroupType) => {
     switch (type) {
-      case "study": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+      case "community": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
       case "prayer": return "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
       case "counselling": return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+      case "study": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
       default: return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
     }
   }
@@ -347,7 +336,8 @@ export default function CommunityPage() {
                       <SelectContent>
                         <SelectItem value="study">📖 Study Group</SelectItem>
                         <SelectItem value="prayer">🙏 Prayer Group</SelectItem>
-                        <SelectItem value="general">👥 General Community</SelectItem>
+                        <SelectItem value="community">👥 Community</SelectItem>
+                        <SelectItem value="counselling">💬 Counselling</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -378,7 +368,7 @@ export default function CommunityPage() {
             <TabsTrigger value="study" className="rounded-xl">📖 Study</TabsTrigger>
             <TabsTrigger value="prayer" className="rounded-xl">🙏 Prayer</TabsTrigger>
             <TabsTrigger value="counselling" className="rounded-xl">💬 Counselling</TabsTrigger>
-            <TabsTrigger value="general" className="rounded-xl">👥 Community</TabsTrigger>
+            <TabsTrigger value="community" className="rounded-xl">👥 Community</TabsTrigger>
           </TabsList>
 
           <TabsContent value={activeTab} className="mt-6">
@@ -446,9 +436,10 @@ export default function CommunityPage() {
                             <div className="flex items-start gap-3">
                               <Avatar className="h-10 w-10 flex-shrink-0">
                                 <AvatarFallback className={`text-white ${
-                                  group.type === 'study' ? 'bg-blue-500' :
+                                  group.type === 'study' ? 'bg-green-500' :
                                   group.type === 'prayer' ? 'bg-rose-500' :
-                                  group.type === 'counselling' ? 'bg-purple-500' : 'bg-gray-500'
+                                  group.type === 'counselling' ? 'bg-purple-500' :
+                                  group.type === 'community' ? 'bg-blue-500' : 'bg-gray-500'
                                 }`}>
                                   {group.name.substring(0, 2).toUpperCase()}
                                 </AvatarFallback>
@@ -460,9 +451,11 @@ export default function CommunityPage() {
                                 </div>
                                 <div className="flex items-center gap-2 mb-2">
                                   <Badge className={`text-xs px-2 py-0.5 ${getGroupTypeBadge(group.type)}`}>
-                                    {group.type === 'study' ? '📖 Study' :
+                                    {
+                                     group.type === 'study' ? '📖 Study' :
                                      group.type === 'prayer' ? '🙏 Prayer' :
-                                     group.type === 'counselling' ? '💬 Counselling' : '👥 Community'}
+                                     group.type === 'counselling' ? '💬 Counselling' :
+                                     group.type === 'community' ? '👥 Community' : '👥 Community'}
                                   </Badge>
                                   <span className="text-xs text-muted-foreground">{group.members} members</span>
                                 </div>
@@ -505,9 +498,10 @@ export default function CommunityPage() {
                         <div className="flex items-center gap-3">
                           <Avatar className="h-12 w-12">
                             <AvatarFallback className={`text-white ${
-                              selectedGroup.type === 'study' ? 'bg-blue-500' :
+                              selectedGroup.type === 'study' ? 'bg-green-500' :
                               selectedGroup.type === 'prayer' ? 'bg-rose-500' :
-                              selectedGroup.type === 'counselling' ? 'bg-purple-500' : 'bg-gray-500'
+                              selectedGroup.type === 'counselling' ? 'bg-purple-500' :
+                              selectedGroup.type === 'community' ? 'bg-blue-500' : 'bg-gray-500'
                             }`}>
                               {selectedGroup.name.substring(0, 2).toUpperCase()}
                             </AvatarFallback>
@@ -536,7 +530,8 @@ export default function CommunityPage() {
                           <Badge className={`${getGroupTypeBadge(selectedGroup.type)}`}>
                             {selectedGroup.type === 'study' ? '📖 Study' :
                              selectedGroup.type === 'prayer' ? '🙏 Prayer' :
-                             selectedGroup.type === 'counselling' ? '💬 Counselling' : '👥 Community'}
+                             selectedGroup.type === 'counselling' ? '💬 Counselling' :
+                             selectedGroup.type === 'community' ? '👥 Community' : '👥 Community'}
                           </Badge>
                           <Button variant="outline" size="sm" className="rounded-xl">
                             <Users className="h-4 w-4 mr-2" />
