@@ -12,6 +12,7 @@ import { SignInButton,
   SignedIn,
   SignedOut,
   UserButton,} from "@clerk/nextjs"
+
 const Navigation = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
@@ -22,6 +23,18 @@ const Navigation = () => {
       label: "Chat",
       icon: MessageCircle,
       active: pathname === "/chat",
+    },
+    {
+      href: "/prayers",
+      label: "Prayers",
+      icon: Heart,
+      active: pathname === "/prayers" || pathname?.startsWith("/prayers/"),
+    },
+    {
+      href: "/rosary",
+      label: "Rosary",
+      icon: Crown,
+      active: pathname === "/rosary",
     },
     {
       href: "/music",
@@ -71,8 +84,8 @@ const Navigation = () => {
                     href={route.href}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-                      route.active 
-                        ? "bg-primary/10 text-primary" 
+                      route.active
+                        ? "bg-primary/10 text-primary"
                         : "hover:bg-muted"
                     }`}
                   >

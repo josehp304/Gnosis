@@ -137,7 +137,155 @@ Twenty-five years after her death, a retrial declared her innocent. She became a
 St. Joan of Arc remains one of history's most remarkable figures - a teenage girl who changed the course of history through her unwavering faith and courage. She inspires people to stand up for their convictions, even in the face of overwhelming opposition.
 
 *"I am not afraid... I was born to do this."* - St. Joan of Arc`
-  }
+  },
+  {
+    id: "st-chavara",
+    name: "St. Kuriakose Elias Chavara",
+    short: "Indian priest, social reformer, and founder of the CMI congregation.",
+    story: `# St. Kuriakose Elias Chavara
+
+**Born:** February 10, 1805  
+**Died:** January 3, 1871  
+**Canonized:** November 23, 2014
+
+## Early Life
+
+Born in Kerala, India, Kuriakose Elias Chavara was deeply spiritual from childhood. He joined the seminary at age 13 and was ordained a priest in 1829.
+
+## Reformer and Founder
+
+St. Chavara co-founded the first indigenous religious congregation for men in India, the Carmelites of Mary Immaculate (CMI), and later a congregation for women. He was a pioneer in education, starting the first Catholic printing press in India and establishing schools attached to every church.
+
+## Social Impact
+
+He worked for the upliftment of the marginalized, promoted family prayer, and introduced the practice of Sunday school. His reforms had a lasting impact on the Church and society in Kerala.
+
+## Legacy
+
+St. Chavara is remembered as a visionary leader, educator, and social reformer who combined deep faith with practical action.
+
+*"Trust in the Lord and move forward."* - St. Chavara`
+  },
+  {
+    id: "st-devasahayam-pillai",
+    name: "St. Devasahayam Pillai",
+    short: "First Indian layman martyr, known for his steadfast faith under persecution.",
+    story: `# St. Devasahayam Pillai
+
+**Born:** April 23, 1712  
+**Died:** January 14, 1752  
+**Canonized:** May 15, 2022
+
+## Early Life
+
+Born Neelakanta Pillai in Tamil Nadu, India, he was a Hindu court official who converted to Christianity and took the name Devasahayam (Lazarus).
+
+## Persecution and Martyrdom
+
+His conversion angered local authorities. He was arrested, tortured, and finally shot for refusing to renounce his faith. He endured suffering with patience and forgiveness.
+
+## Legacy
+
+St. Devasahayam is venerated as a martyr who bore witness to Christ in the face of severe persecution, inspiring Indian Christians to remain faithful.
+
+*"Whoever believes in the Son has eternal life."* - John 3:36`
+  },
+  {
+    id: "st-francis-xavier",
+    name: "St. Francis Xavier",
+    short: "Missionary and co-founder of the Jesuits, apostle to Asia.",
+    story: `# St. Francis Xavier
+
+**Born:** April 7, 1506  
+**Died:** December 3, 1552  
+**Canonized:** March 12, 1622
+
+## Early Life
+
+Born in Spain, Francis Xavier studied at the University of Paris, where he met St. Ignatius of Loyola and helped found the Society of Jesus (Jesuits).
+
+## Missionary Journeys
+
+He traveled to India, Southeast Asia, and Japan, preaching the Gospel and baptizing thousands. He is credited with bringing Christianity to many parts of Asia.
+
+## Legacy
+
+St. Francis Xavier is one of the greatest missionaries in Church history, known for his zeal, miracles, and tireless work for souls.
+
+*"Give me souls."* - St. Francis Xavier`
+  },
+  {
+    id: "st-mariam-thresia",
+    name: "St. Mariam Thresia",
+    short: "Indian mystic and founder of the Congregation of the Holy Family.",
+    story: `# St. Mariam Thresia
+
+**Born:** April 26, 1876  
+**Died:** June 8, 1926  
+**Canonized:** October 13, 2019
+
+## Early Life
+
+Born in Kerala, India, Mariam Thresia was drawn to prayer and helping the poor from a young age. She experienced mystical visions and bore the stigmata.
+
+## Foundress and Mystic
+
+She founded the Congregation of the Holy Family, focusing on family apostolate, education, and care for the sick. Her life was marked by deep union with Christ and service to others.
+
+## Legacy
+
+St. Mariam Thresia is remembered for her compassion, mystical gifts, and dedication to strengthening Christian families.
+
+*"Let your light shine before others."* - Matthew 5:16`
+  },
+  {
+    id: "st-maria-goretti",
+    name: "St. Maria Goretti",
+    short: "Young martyr of purity and forgiveness.",
+    story: `# St. Maria Goretti
+
+**Born:** October 16, 1890  
+**Died:** July 6, 1902  
+**Canonized:** June 24, 1950
+
+## Early Life
+
+Born in Italy to a poor family, Maria Goretti was known for her piety and maturity beyond her years.
+
+## Martyrdom
+
+At age 11, she resisted a sexual assault and was fatally stabbed. On her deathbed, she forgave her attacker, who later repented and converted.
+
+## Legacy
+
+St. Maria Goretti is a model of purity, forgiveness, and mercy, especially for young people.
+
+*"Yes, for the love of Jesus I forgive him... and I want him to be with me in heaven."* - St. Maria Goretti`
+  },
+  {
+    id: "st-augustine",
+    name: "St. Augustine of Hippo",
+    short: "Bishop, theologian, and Doctor of the Church; author of Confessions.",
+    story: `# St. Augustine of Hippo
+
+**Born:** November 13, 354  
+**Died:** August 28, 430  
+**Canonized:** Pre-Congregation
+
+## Early Life
+
+Born in North Africa, Augustine led a wayward life before converting to Christianity through the prayers of his mother, St. Monica, and the preaching of St. Ambrose.
+
+## Conversion and Ministry
+
+After his conversion, he became a priest, bishop, and one of the greatest theologians in Church history. His writings, especially Confessions and The City of God, shaped Western Christianity.
+
+## Legacy
+
+St. Augustine is honored as a Doctor of the Church and a profound thinker on grace, truth, and the human heart.
+
+*"You have made us for yourself, O Lord, and our heart is restless until it rests in you."* - St. Augustine`
+  },
 ];
 
 // Utility functions
