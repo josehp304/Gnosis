@@ -2,6 +2,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, Music, Users, UserCircle, Book, Heart, Crown, Sparkles, Cross, Star, Shield, Lightbulb, Play, ChevronRight, Headphones } from 'lucide-react';
 import React from 'react';
+import { SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,} from "@clerk/nextjs"
 
 export default function Home() {
   return (
@@ -88,7 +92,7 @@ export default function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="text-lg px-12 py-5 h-auto rounded-xl border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+                className="text-lg px-12 py-5 h-auto rounded-xl border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 hover:text-primary transition-all duration-300 backdrop-blur-sm"
                 aria-label="Join our faith community"
               >
                 <Link href="/community" className="flex items-center">
@@ -192,7 +196,7 @@ export default function Home() {
                     Start Conversation <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/bible">
                     <Book className="mr-2 h-5 w-5" />
                     Read Scripture
@@ -338,7 +342,7 @@ export default function Home() {
                     Explore Prayers <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/rosary">
                     <Crown className="mr-2 h-5 w-5" />
                     Pray Rosary
@@ -429,7 +433,7 @@ export default function Home() {
                     Pray the Rosary <Crown className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/prayers">
                     <Heart className="mr-2 h-5 w-5" />
                     View All Prayers
@@ -569,7 +573,7 @@ export default function Home() {
                     Explore Music <Music className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/chat">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Ask for Recommendations
@@ -651,7 +655,7 @@ export default function Home() {
                     Join Community <Users className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-sacred-teal/20 hover:border-sacred-teal/40 hover:bg-sacred-teal/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/chat">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Get Guidance
@@ -813,7 +817,7 @@ export default function Home() {
                     Explore Saints <UserCircle className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-accent/20 hover:border-accent/40 hover:bg-accent/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/prayers">
                     <Heart className="mr-2 h-5 w-5" />
                     Saint Prayers
@@ -901,7 +905,7 @@ export default function Home() {
                     Read Scripture <Book className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 h-auto border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hover:scale-105 hover:text-primary transition-all duration-300">
                   <Link href="/chat">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Ask About Scripture
@@ -987,14 +991,11 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
               <Button asChild size="lg" className="sacred-button text-lg px-12 py-5 h-auto hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                <Link href="/auth/register">
-                  Create Your Account <ArrowRight className="ml-3 h-5 w-5" />
-                </Link>
+                <SignUpButton />
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-12 py-5 h-auto border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                <Link href="/auth/login">
-                  Log In <ChevronRight className="ml-3 h-5 w-5" />
-                </Link>
+              <Button asChild size="lg" variant="outline" className="text-lg px-12 py-5 h-auto border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 hover:text-primary transition-all duration-300 backdrop-blur-sm">
+                  <SignInButton />
+           
               </Button>
             </div>
 
