@@ -24,30 +24,23 @@ const Footer = () => {
       
       <div className="container py-8 md:py-12">
         <div className="flex flex-col items-center text-center space-y-4">
-          {/* Main brand */}
-          {/* <div className="flex items-center gap-2">
-            <span className="font-crimson text-2xl font-semibold text-primary">
-              Gnosis
-            </span>
-          </div> */}
-          
-          {/* Decorative divider */}
-          {/* <div className="flex items-center gap-3 w-full max-w-xs">
-            <div className="h-px bg-border flex-1"></div>
-            <Heart className="w-4 h-4 text-accent fill-current" />
-            <div className="h-px bg-border flex-1"></div>
-          </div> */}
-          
+        
           {/* Made with love message */}
           <p className="text-sm text-muted-foreground font-medium">
             Made with{" "}
-            <Heart className="inline-block w-4 h-4 text-red-500 fill-current mx-1" />
-            {" "}by{" "}
+            <span className="inline-flex items-center">
+              <Heart className="w-4 h-4 text-red-500 fill-current mx-1" />
+            </span>
+            by{" "}
             <Link 
               href="https://www.linkedin.com/in/dariogeorge21/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-primary hover:text-accent transition-colors font-semibold underline decoration-2 underline-offset-2 hover:decoration-accent"
+              className="text-primary hover:text-accent transition-colors font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("https://www.linkedin.com/in/dariogeorge21/", "_blank");
+              }}
             >
               Dario
             </Link>
@@ -56,7 +49,11 @@ const Footer = () => {
               href="https://www.linkedin.com/in/joseph304/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-primary hover:text-accent transition-colors font-semibold underline decoration-2 underline-offset-2 hover:decoration-accent"
+              className="text-primary hover:text-accent transition-colors font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("https://www.linkedin.com/in/joseph304/", "_blank");
+              }}
             >
               Joseph
             </Link>
