@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import 
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, Music, Users, UserCircle, Book, Heart, Crown, Sparkles, Cross, Star, Shield, Lightbulb, Play, ChevronRight, Headphones } from 'lucide-react';
 import React from 'react';

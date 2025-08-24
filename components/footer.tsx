@@ -25,18 +25,18 @@ const Footer = () => {
       <div className="container py-8 md:py-12">
         <div className="flex flex-col items-center text-center space-y-4">
           {/* Main brand */}
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <span className="font-crimson text-2xl font-semibold text-primary">
               Gnosis
             </span>
-          </div>
+          </div> */}
           
           {/* Decorative divider */}
-          <div className="flex items-center gap-3 w-full max-w-xs">
+          {/* <div className="flex items-center gap-3 w-full max-w-xs">
             <div className="h-px bg-border flex-1"></div>
             <Heart className="w-4 h-4 text-accent fill-current" />
             <div className="h-px bg-border flex-1"></div>
-          </div>
+          </div> */}
           
           {/* Made with love message */}
           <p className="text-sm text-muted-foreground font-medium">
