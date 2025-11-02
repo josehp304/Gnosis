@@ -2,16 +2,16 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Send, Bot, User, MessageCircle } from "lucide-react"
-import { ScrollArea } from "@/components/ui/scroll-area"
-
-import parse from "html-react-parser"
+import { Send, ArrowDown, Sparkles, RotateCcw } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeHighlight from "rehype-highlight"
+import rehypeRaw from "rehype-raw"
 import axios from "axios"
+import "highlight.js/styles/github-dark.css"
+
 // Types for messages
-type MessageType = "user" | "assistant" |"system"
+type MessageType = "user" | "assistant" | "system"
 interface Message {
   id: string
   content: string
@@ -26,26 +26,88 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      content: "Praise God! How can I help you today?",
+      content: "Shalom !! How can I help you today?",
       type: "assistant",
       timestamp: new Date()
     }
   ])
 
   const [isLoading, setIsLoading] = useState(false)
+  const [showScrollButton, setShowScrollButton] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Auto-scroll to bottom of messages
+  // Check if user has scrolled up
+  const handleScroll = () => {
+    if (messagesContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = messagesContainerRef.current
+      const isNearBottom = scrollHeight - scrollTop - clientHeight < 100
+      setShowScrollButton(!isNearBottom)
+    }
+  }
+
+  // Scroll to bottom function
+  const scrollToBottom = () => {
+    // messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  // Auto-scroll only when user sends a message or bot responds (if already at bottom)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (messagesContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = messagesContainerRef.current
+      const isNearBottom = scrollHeight - scrollTop - clientHeight < 100
+
+      // Only auto-scroll if user is already near the bottom
+      if (isNearBottom) {
+        scrollToBottom()
+      }
+    }
   }, [messages])
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`
+    }
+  }, [input])
+
+  // Global keyboard handler - focus input on any keypress
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Don't focus if user is already typing in input or if modifier keys are pressed
+      if (
+        document.activeElement === textareaRef.current ||
+        e.ctrlKey ||
+        e.metaKey ||
+        e.altKey
+      ) {
+        return
+      }
+
+      // Handle keyboard shortcuts
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault()
+        handleClearChat()
+        return
+      }
+
+      // Focus input on regular keypress
+      if (e.key.length === 1 && textareaRef.current) {
+        textareaRef.current.focus()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyPress)
+    return () => window.removeEventListener("keydown", handleKeyPress)
+  }, [])
 
   // Handle sending a message
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!input.trim()) return
+    if (!input.trim() || isLoading) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -57,9 +119,16 @@ export default function ChatPage() {
     setMessages(prev => [...prev, userMessage])
     setInput("")
     setIsLoading(true)
-    const reqMessage=messages.map(message => ({role:message.type === "user" ? "user" : "assistant", content:message.content}))
+
+    const reqMessage = messages.map(message => ({
+      role: message.type === "user" ? "user" : "assistant",
+      content: message.content
+    }))
+
     try {
-      const responseax = await axios.post("/api/chatbot",{messages:[...reqMessage,{role:userMessage.type,content:userMessage.content}]})
+      const responseax = await axios.post("/api/chatbot", {
+        messages: [...reqMessage, { role: userMessage.type, content: userMessage.content }]
+      })
       const response = responseax.data
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -74,7 +143,7 @@ export default function ChatPage() {
 
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "I apologize, but I'm having trouble connecting right now. Please try again later.",
+        content: "I apologize, but I'm having trouble connecting right now. Please try again later. Shalom !!",
         type: "assistant",
         timestamp: new Date()
       }
@@ -82,144 +151,174 @@ export default function ChatPage() {
       setMessages(prev => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
-      inputRef.current?.focus()
+      textareaRef.current?.focus()
+    }
+  }
+
+  // Handle clearing chat
+  const handleClearChat = () => {
+    setMessages([
+      {
+        id: "welcome",
+        content: "Shalom !! How can I help you today?",
+        type: "assistant",
+        timestamp: new Date()
+      }
+    ])
+  }
+
+  // Handle textarea key down
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
+      handleSendMessage(e)
     }
   }
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
-      <div className="container mx-auto max-w-6xl py-4 md:py-8 px-4">
-        <Card className="border-0 shadow-2xl h-[90vh] md:h-[85vh] flex flex-col justify-between bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-purple-600/90 to-indigo-600/90"></div>
-            <div className="relative z-10 ">
-              <CardTitle className="flex items-center justify-between text-xl md:text-2xl font-bold">
-                <div className="flex items-center">
-                  The Bible Guide
-                </div>
-                <div className="flex items-center gap-1 text-xs md:text-sm font-normal bg-white/20 px-2 md:px-3 py-1 rounded-full">
-                  <MessageCircle className="h-3 w-3 md:h-4 md:w-4" />
-                  AI Spiritual Guidance
-                </div>
-              </CardTitle>
+    <div className="flex flex-col h-screen bg-white dark:bg-gray-950 relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-30"
+        style={{
+          backgroundImage: 'url(https://media.istockphoto.com/id/182668143/photo/jesus-comforting.webp?b=1&s=612x612&w=0&k=20&c=ov8QgsDRL8aqim8wbX8WK0Dd1nDCkuSBgDJCGiADzzg=)',
+        }}
+      />
+      <div className="fixed inset-0 bg-black/30 dark:bg-black/30" />
+      
+      {/* Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              Divine Guide
+            </h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleClearChat}
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              title="New chat (Ctrl+K)"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </header>
 
-            </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-2 -left-2 w-16 h-16 bg-purple-300/20 rounded-full blur-lg"></div>
-          </CardHeader>
-          <CardContent className="flex-1 p-6 relative overflow-hidden">
-            {/* Background Image with Spiritual Overlay */} 
+      {/* Messages Container */}
+      <div
+        ref={messagesContainerRef}
+        onScroll={handleScroll}
+        className="flex-1 overflow-y-auto"
+      >
+        <div className="max-w-3xl mx-auto px-4 py-8">
+          {messages.map((message, index) => (
             <div
-              className="absolute inset-0 chat-background"
+              key={message.id}
+              className={`mb-8 opacity-0 animate-fade-in ${
+                message.type === "user" ? "flex justify-end" : ""
+              }`}
               style={{
-                backgroundImage: "url('/seek jesus.jpg')"
+                animationDelay: `${index * 50}ms`,
+                animationFillMode: "forwards"
               }}
-            />
-            {/* Multi-layered overlay for spiritual atmosphere and readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/90 via-white/85 to-purple-50/90 dark:from-blue-900/90 dark:via-gray-900/85 dark:to-purple-900/90 spiritual-overlay" />
-            <div className="absolute inset-0 bg-gradient-radial from-transparent via-white/20 to-white/40 dark:from-transparent dark:via-gray-900/20 dark:to-gray-900/40" />
-
-            <ScrollArea className="h-[55vh] pr-4 relative z-10">
-              <div className="flex flex-col gap-6 py-4">
-                {messages.map((message, index) => (
-                  <div
-                    key={message.id}
-                    className={`flex items-start gap-4 opacity-0 animate-fade-in ${
-                      message.type === "user" ? "flex-row-reverse" : ""
-                    }`}
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                      animationFillMode: 'forwards'
-                    }}
-                  >
-                  
-                    <div
-                      className={`relative max-w-[85%] sm:max-w-[75%] group ${
-                        message.type === "user" ? "ml-auto" : "mr-auto"
-                      }`}
-                    >
-                      <div
-                        className={`rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl transition-all duration-300 hover:shadow-2xl backdrop-blur-sm ${
-                          message.type === "user"
-                            ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-purple-500/25"
-                            : "bg-white/98 dark:bg-gray-800/95 border border-gray-200/60 dark:border-gray-700/60 text-gray-800 dark:text-gray-200 shadow-gray-500/20"
-                        }`}
-                      >
-                        <div className="prose prose-sm max-w-none">
-                          {parse(message.content)}
-                        </div>
-                      </div>
-                      {/* Message tail */}
-                      <div className={`absolute top-4 w-3 h-3 transform rotate-45 ${
-                        message.type === "user"
-                          ? "-left-1 bg-gradient-to-br from-purple-500 to-pink-500"
-                          : "-right-1 bg-white/98 dark:bg-gray-800/95 border-r border-b border-gray-200/60 dark:border-gray-700/60"
-                      }`}></div>
+            >
+              <div
+                className={`max-w-[85%] ${
+                  message.type === "user"
+                    ? "bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3"
+                    : ""
+                }`}
+              >
+                {message.type === "assistant" && (
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="h-4 w-4 text-white" />
                     </div>
-                  </div>
-                ))}
-                {isLoading && (
-                  <div className="flex items-start gap-4 opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards' }}>
-                    
-                    <div className="relative max-w-[85%] sm:max-w-[75%] mr-auto">
-                      <div className="rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl bg-white/98 dark:bg-gray-800/95 border border-gray-200/60 dark:border-gray-700/60 backdrop-blur-sm shadow-gray-500/20">
-                        <div className="flex gap-2 items-center">
-                          <div className="flex gap-1">
-                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 animate-bounce"></div>
-                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 animate-bounce delay-100"></div>
-                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 animate-bounce delay-200"></div>
-                          </div>
-                          <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">Thinking...</span>
-                        </div>
-                      </div>
-                      <div className="absolute top-4 -right-1 w-3 h-3 transform rotate-45 bg-white/98 dark:bg-gray-800/95 border-r border-b border-gray-200/60 dark:border-gray-700/60"></div>
+                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-semibold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:text-gray-100 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-[''] prose-code:after:content-[''] prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 )}
-                <div ref={messagesEndRef} />
+                {message.type === "user" && (
+                  <p className="text-gray-900 dark:text-gray-100 leading-relaxed">
+                    {message.content}
+                  </p>
+                )}
               </div>
-            </ScrollArea>
-          </CardContent>
-          <CardFooter className="p-4 md:p-6 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700">
-            <form onSubmit={handleSendMessage} className="w-full flex gap-3 md:gap-4 items-end">
-              <div className="flex-1 relative">
-                <Textarea
-                  ref={inputRef}
-                  placeholder="Share your thoughts..."
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  className="min-h-[50px] md:min-h-[60px] max-h-32 resize-none border-2 border-gray-200 dark:border-gray-600 rounded-2xl px-4 md:px-6 py-3 md:py-4 text-sm md:text-base bg-white dark:bg-gray-800 focus:border-purple-400 dark:focus:border-purple-400 focus:ring-2 focus:ring-purple-100 dark:focus:ring-purple-900/50 transition-all duration-300 shadow-sm hover:shadow-md"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault()
-                      handleSendMessage(e)
-                    }
-                  }}
-                />
-                <div className="absolute bottom-2 md:bottom-3 right-3 text-xs text-gray-400 dark:text-gray-500">
-                  {input.length > 0 && (
-                    <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
-                      {input.length}
-                    </span>
-                  )}
+            </div>
+          ))}
+
+          {/* Loading indicator */}
+          {isLoading && (
+            <div className="mb-8 opacity-0 animate-fade-in" style={{ animationFillMode: "forwards" }}>
+              <div className="flex items-start gap-3">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="h-4 w-4 text-white" />
+                </div>
+                <div className="flex gap-1 items-center pt-1">
+                  <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-600 animate-bounce"></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-600 animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-600 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
                 </div>
               </div>
-              <Button
-                type="submit"
-                size="icon"
-                disabled={isLoading || !input.trim()}
-                className="relative flex items-center justify-center h-[56px] w-[56px] md:h-[64px] md:w-[64px] rounded-full bg-gradient-to-br from-purple-500 via-pink-400 to-yellow-400 shadow-xl hover:shadow-2xl border-2 border-white/30 dark:border-gray-800/40 backdrop-blur-md transition-all duration-300 transform hover:scale-110 active:scale-95 focus:ring-4 focus:ring-pink-200/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group"
-              >
+            </div>
+          )}
 
-                <span className="absolute inset-0 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300 pointer-events-none" />
-                <Send className="relative z-10 h-6 w-6 md:h-7 md:w-7 text-white drop-shadow-lg group-hover:animate-send-bounce" />
-                <span className="sr-only">Send message</span>
+          <div ref={messagesEndRef} />
+        </div>
+      </div>
 
-              </Button>
-            </form>
-          </CardFooter>
-        </Card>
+      {/* Scroll to bottom button */}
+      {showScrollButton && (
+        <button
+          onClick={scrollToBottom}
+          className="fixed bottom-32 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-200 opacity-0 animate-fade-in z-20"
+          style={{ animationFillMode: "forwards" }}
+          aria-label="Scroll to bottom"
+        >
+          <ArrowDown className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+        </button>
+      )}
+
+      {/* Input Area */}
+      <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 sticky bottom-0">
+        <div className="max-w-3xl mx-auto px-4 py-4">
+          <form onSubmit={handleSendMessage} className="relative">
+            <textarea
+              ref={textareaRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Message Divine Guide..."
+              rows={1}
+              className="w-full resize-none rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 pr-12 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200 max-h-[200px] overflow-y-auto"
+              style={{ minHeight: "48px" }}
+            />
+            <Button
+              type="submit"
+              size="icon"
+              disabled={isLoading || !input.trim()}
+              className="absolute right-2 bottom-2 h-8 w-8 rounded-lg bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              <Send className="h-4 w-4 text-white dark:text-gray-900" />
+              <span className="sr-only">Send message</span>
+            </Button>
+          </form>
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
+            Press Enter to send, Shift+Enter for new line
+          </p>
+        </div>
       </div>
     </div>
   )
