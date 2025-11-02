@@ -22,8 +22,8 @@ const Footer = () => {
         </div>
       </div>
       
-      <div className="container py-8 md:py-12">
-        <div className="flex flex-col items-center text-center space-y-4">
+      <div className="container py-8 md:py-12 flex items-center justify-center min-h-[200px]">
+        <div className="flex flex-col items-center justify-center text-center space-y-4">
         
           {/* Made with love message */}
           <p className="text-sm text-muted-foreground font-medium">
