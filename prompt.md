@@ -1579,21 +1579,27 @@ class Playlist extends HiveObject {
 - `playlistsBox`: User playlists
 - `cacheBox`: API response caching
 
-**Cloud Database: Supabase**
+**Cloud Database: Supabase (Primary Backend)**
 
 **Justification**:
-- **PostgreSQL**: Powerful relational database
-- **Real-time**: WebSocket subscriptions for chat
-- **Authentication**: Built-in auth with social providers
-- **Storage**: File storage for images/audio
-- **Row-Level Security**: Fine-grained access control
-- **Free Tier**: Generous free tier for development
-- **Flutter SDK**: Official Flutter package
+- **PostgreSQL**: Powerful relational database with full SQL support
+- **Real-time**: Built-in WebSocket subscriptions for live chat
+- **Authentication**: Complete auth system with social providers
+- **Storage**: File storage for images, audio, and user uploads
+- **Row-Level Security**: Database-level security policies
+- **Edge Functions**: Serverless functions for custom logic
+- **APIs**: Auto-generated REST and GraphQL APIs
+- **Free Tier**: Generous free tier perfect for development and launch
+- **Flutter SDK**: Official, well-maintained Flutter package
+- **Open Source**: No vendor lock-in, can self-host if needed
 
-**Alternative Considered**:
-- **Firebase**: More expensive, vendor lock-in
-- **AWS Amplify**: More complex setup
-- **Custom REST API**: More development time
+**Complete Backend Solution**: Supabase will handle ALL backend needs:
+- User authentication and management
+- Real-time community chat
+- File storage for music and images
+- Database for all app data
+- Push notifications (via webhooks)
+- API generation and management
 
 **Supabase Schema**:
 
@@ -1678,9 +1684,14 @@ CREATE INDEX idx_group_members_user_id ON group_members(user_id);
 
 ### 5.3 API Architecture
 
-**Backend Requirements**: Minimal custom backend needed
+**Backend Requirements**: No custom backend needed - Supabase provides everything
 
 **API Design Pattern**: REST + Real-time (Supabase)
+
+**Backend Architecture**: 
+- **Primary Backend**: Supabase (handles ALL backend operations)
+- **External APIs**: Only for third-party services (AI, Bible, Music)
+- **No Custom Server**: All backend logic handled by Supabase
 
 **Endpoint Specifications**:
 
@@ -3720,26 +3731,22 @@ dependencies:
 #### Backend as a Service
 
 ```yaml
-  # Supabase - Backend platform
+  # Supabase - Complete backend platform
   supabase_flutter: ^2.0.3
-
-  # Alternative: Firebase
-  # firebase_core: ^2.24.2
-  # firebase_auth: ^4.15.3
-  # cloud_firestore: ^4.13.6
-  # firebase_storage: ^11.5.6
-  # firebase_messaging: ^14.7.9
 ```
 
 **Purpose**:
-- `supabase_flutter`: Complete backend solution (database, auth, storage, real-time)
+- `supabase_flutter`: Complete backend solution (database, auth, storage, real-time, APIs)
 
-**Why Supabase over Firebase**:
-- PostgreSQL (more powerful than Firestore)
-- Better pricing
-- Open source
-- SQL queries
-- Row-level security
+**Supabase as Complete Backend**:
+- **Database**: PostgreSQL with full SQL support
+- **Authentication**: Email/password, OAuth (Google, Apple, GitHub, etc.)
+- **Real-time**: WebSocket subscriptions for live features
+- **Storage**: File uploads and management
+- **Edge Functions**: Custom serverless functions
+- **APIs**: Auto-generated REST and GraphQL endpoints
+- **Row-Level Security**: Database-level access control
+- **Webhooks**: For push notifications and integrations
 
 #### Audio Playback
 
