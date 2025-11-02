@@ -316,6 +316,27 @@ through the mercy of God, rest in peace.
 
 Amen.`
   },
+  {
+    id: "st-michael",
+    title: "St Michael's Prayer",
+    subtitle: "Prayer to St. Michael",
+    description: "A prayer invoking the archangel Michael for protection against Satan and evil.",
+    category: "traditional",
+    icon: "⚔️",
+    whenToRecite: "For protection against Satan and evil, especially before important events",
+    context: "A prayer invoking the archangel Michael for protection against Satan and evil.",
+    history: "Based on Jude 1:9 and Revelation 12:7, with the petition added by the Church over time",
+    text: `Saint Michael the Archangel,
+defend us in battle,
+against the wickedness and snares of the devil.
+May God rebuke him, we humbly pray;
+and do Thou, O Prince of the heavenly host,
+by the power of God,
+cast into hell Satan and all the evil spirits,
+who prowl about the world seeking the ruin of souls.
+
+Amen.`
+  }
   
 ];
 
