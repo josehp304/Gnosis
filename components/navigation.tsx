@@ -64,7 +64,8 @@ const Navigation = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-center">
+        <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -150,6 +151,7 @@ const Navigation = () => {
             <UserCircle className="h-5 w-5" />
             <span className="sr-only">Account</span>
           </Button>
+        </div>
         </div>
       </div>
     </header>
